@@ -303,6 +303,7 @@
   /**
    * Generate an object containing keys/values corresponding to form elements
    *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
    * @param {Element} form element
    * @return {Object} the key/value pairs for the form
    */
@@ -311,6 +312,10 @@
     form = getElement(form);
     if (! form) {
       return {};
+    }
+
+    if (typeof FormData !== 'undefined') {
+      return new FormData(form);
     }
 
     const
@@ -403,11 +408,14 @@
     const defaults = {
       form: null,
       url: '/',
+      headers: {},
       method: 'get',
       params: null
     };
 
     config = merge(defaults, config);
+
+    config.headers = config.headers ? config.headers : {};
 
     if (config.form) {
       config.form = getElement(config.form);
@@ -426,13 +434,20 @@
       }
     };
 
-    let url = config.url;
-    if (config.method.toUpperCase() === 'GET' && config.params) {
-      url = url + '?' + queryString(config.params);
+    let
+    url = config.url,
+    params = '';
+
+    if (config.method.toUpperCase() === 'GET') {
+      url = config.params ? (url + '?' + queryString(config.params)) : url;
+
+    } else { // post
+      params = queryString(config.params);
+      config.headers['Content-type'] =  'application/x-www-form-urlencoded';
     }
 
     xhttp.open(config.method, url, true);
-    xhttp.send();
+    xhttp.send(params);
 
     return xhttp;
   },
@@ -493,20 +508,4 @@
   };
 
 })();
-
-
-/*
-if (require.main === module) {
-
-  if (process.argv.length === 3) {
-    retrieveMetadata(process.argv[2]).then(function(meta) {
-      console.log(JSON.stringify(meta));
-    }).catch(function(err) {
-      console.log('🚫  ' + err);
-    });
-  } else {
-    console.log('🚫  No URL provided');
-  }
-}
-*/
 
