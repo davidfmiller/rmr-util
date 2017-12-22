@@ -86,7 +86,7 @@
   },
 
   /*
-   * Convert an array-like thing (ex: NodeList or arguments object) into a proper array
+   * Convert an array-like thing (ex: NodeList or arguments object) into a proper array, or convert a scalar into a single-element array
    *
    * @param list (array-like thing)
    * @return Array
@@ -100,8 +100,8 @@
       return list;
     }
 
-    if (! list.length) {
-      return ret;
+    if (typeof list.length !== 'number') {
+      return [list];
     }
 
     for (i = 0; i < list.length; i++) {
@@ -167,7 +167,7 @@
       'xml:space': 'preserve'
     });
 
-    svg.innerHTML = 
+    svg.innerHTML =
     '<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>' +
     '<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z">' +
     '<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.8s" repeatCount="indefinite"></animateTransform>' +
@@ -349,10 +349,11 @@
   },
 
   /**
-   * 
+   * Get a node's ancestor
    *
    * @param {Element} node starting point of search
    * @param {String} ancestor the selector for the ancestor we're looking for
+   * @param {Bool} includeSelf (optional) include starting element in test
    * @return {Element} or `null` if no such ancestor exists
    */
   ancestor = function(node, ancestor, includeSelf) {
@@ -368,7 +369,7 @@
 
     let parent = node;
 
-    while (parent = parent.parentNode) {
+    while ((parent = parent.parentNode) !== null) {
       if (selectorMatches(parent, ancestor)) {
         return parent;
       }
@@ -376,17 +377,18 @@
 
     return null;
   },
-  
+
   /**
-   * 
+   * Remove a DOM node from the document
    *
    * @param {Element} node the node to be removed
+   * @return {Bool} `true` if removed'; `false` if the node doesn't exist
    */
   removeNode = function(node) {
 
     node = getElement(node);
     if (! node) {
-      return null;
+      return false;
     }
 
     node.parentNode.removeChild(node);
