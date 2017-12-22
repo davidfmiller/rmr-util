@@ -315,7 +315,9 @@
     }
 
     if (typeof FormData !== 'undefined') {
-      return new FormData(form);
+//      const f = new FormData(form);
+//      console.log(f);
+//      return f;
     }
 
     const
@@ -395,6 +397,7 @@
   /**
    * Make an XHR request
    *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
    * @param {Object} config url, method, params, form
    * @param {Function} handler invoked on completion
    * @return {XMLHttpRequest} object making the request
@@ -443,10 +446,17 @@
 
     } else { // post
       params = queryString(config.params);
-      config.headers['Content-type'] =  'application/x-www-form-urlencoded';
+      config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
 
     xhttp.open(config.method, url, true);
+
+    for (const h in config.headers) {
+      if (config.headers.hasOwnProperty(h)) {
+        xhttp.setRequestHeader(h, config.headers[h]);
+      }
+    }
+
     xhttp.send(params);
 
     return xhttp;
