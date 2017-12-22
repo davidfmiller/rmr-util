@@ -397,6 +397,13 @@
   /**
    * Make an XHR request
    *
+   * {
+   *   url: '',
+   *   method: '',
+   *   headers: [],
+   *   params: {}
+   * }
+   *
    * @see https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
    * @param {Object} config url, method, params, form
    * @param {Function} handler invoked on completion
