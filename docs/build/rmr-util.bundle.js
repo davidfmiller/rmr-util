@@ -430,10 +430,9 @@
       return node;
     }
 
-    let parent = node.parentNode;
+    let parent = node;
 
-    while (node.parentNode) {
-      parent = node.parentNode;
+    while (parent = parent.parentNode) {
       if (parent.matches(ancestor)) {
         return parent;
       }
