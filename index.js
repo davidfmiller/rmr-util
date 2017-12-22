@@ -1,16 +1,25 @@
 /* global require, module, console, Promise */
 
-(function() {
+(() => {
 
   'use strict';
+
+  /**
+   * rmr-util
+   * 
+   * JS for your browser
+   *
+   *
+   *
+   */
 
   const
 
   /**
-    Determine if a string is a valid internet URL
-
-    @param {String} str - the string to be tested
-    @return {Bool} - `true` of `false`
+   * Determine if a string is a valid internet URL
+   *
+   * @param {String} str - the string to be tested
+   * @return {Bool} - `true` of `false`
    */
   isURL = function(str) {
     // ???
@@ -28,7 +37,7 @@
 
     const
     p = Element.prototype,
-    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function(s) {
+    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || (s)  => {
       return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
     };
 
@@ -88,11 +97,11 @@
     return o;
   },
 
-  /*
+  /**
    * Convert an array-like thing (ex: NodeList or arguments object) into a proper array, or convert a scalar into a single-element array
    *
-   * @param list (array-like thing)
-   * @return Array
+   * @param {Mixed} list an array-like thing or a scalar
+   * @return {Array} the param as an array
    */
   arr = function(list) {
 
@@ -297,7 +306,7 @@
       return '';
     }
 
-    return Object.keys(obj).reduce(function(a,k) {
+    return Object.keys(obj).reduce((a,k) => {
       a.push(k + '=' + encodeURIComponent(obj[k]));
       return a;
     },[]).join('&');

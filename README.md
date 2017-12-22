@@ -1,4 +1,4 @@
 
 # rmr-util
 
-In-browser utilities
+JS for your browser. 
