@@ -3,7 +3,7 @@
 const
   RMR = require('./index'),
   chai = require('chai'),
-  assert = chai.assert,
+//  assert = chai.assert,
   expect = chai.expect;
 
 describe('rmr-util', function() {
