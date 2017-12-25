@@ -10,28 +10,41 @@
     });
   }
 
+  /**
+   * rmr-util
+   * 
+   * JS for your browser
+   *
+   *
+   *
+   */
+
+
   const
 
   /**
-    Determine if a string is a valid internet URL
-
-    @param {String} str - the string to be tested
-    @return {Bool} - `true` of `false`
+   * Determine if a string is a valid internet URL
+   *
+   * @param {String} str - the string to be tested
+   * @return {Bool} - `true` of `false`
    */
   isURL = function(str) {
+    // ???
     return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(str);
   },
 
-  /*
+  /**
+   * Determine if a node matches a provided selector
    *
-   * @param node {HTMLElement}
-   * @param styles {Object}
+   * @param {HTMLElement} node  the element to be tested
+   * @param {String} the selector string to test
+   * @return {Bool} `true` or `false`
    */
   selectorMatches = function (node, selector) {
 
     const
     p = Element.prototype,
-    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function(s) {
+    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || (s)  => {
       return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
     };
 
@@ -91,11 +104,11 @@
     return o;
   },
 
-  /*
-   * Convert an array-like thing (ex: NodeList or arguments object) into a proper array
+  /**
+   * Convert an array-like thing (ex: NodeList or arguments object) into a proper array, or convert a scalar into a single-element array
    *
-   * @param list (array-like thing)
-   * @return Array
+   * @param {Mixed} list an array-like thing or a scalar
+   * @return {Array} the param as an array
    */
   arr = function(list) {
 
@@ -106,8 +119,8 @@
       return list;
     }
 
-    if (! list.length) {
-      return ret;
+    if (typeof list.length !== 'number') {
+      return [list];
     }
 
     for (i = 0; i < list.length; i++) {
@@ -154,7 +167,7 @@
   /**
    * Make loader
    *
-   * @return {Element} SVG element
+   * @return {String} SVG element
    */
   loader = function() {
 
@@ -300,7 +313,7 @@
       return '';
     }
 
-    return Object.keys(obj).reduce(function(a,k) {
+    return Object.keys(obj).reduce((a,k) => {
       a.push(k + '=' + encodeURIComponent(obj[k]));
       return a;
     },[]).join('&');
@@ -321,7 +334,9 @@
     }
 
     if (typeof FormData !== 'undefined') {
-      return new FormData(form);
+//      const f = new FormData(form);
+//      console.log(f);
+//      return f;
     }
 
     const
@@ -353,7 +368,7 @@
   },
 
   /**
-   * 
+   * Get a node's ancestor
    *
    * @param {Element} node starting point of search
    * @param {String} ancestor the selector for the ancestor we're looking for
@@ -373,7 +388,7 @@
 
     let parent = node;
 
-    while (parent = parent.parentNode) {
+    while ((parent = parent.parentNode) !== null) {
       if (selectorMatches(parent, ancestor)) {
         return parent;
       }
@@ -381,17 +396,18 @@
 
     return null;
   },
-  
+
   /**
-   * 
+   * Remove a DOM node from the document
    *
    * @param {Element} node the node to be removed
+   * @return {Bool} `true` if removed'; `false` if the node doesn't exist
    */
   removeNode = function(node) {
 
     node = getElement(node);
     if (! node) {
-      return null;
+      return false;
     }
 
     node.parentNode.removeChild(node);
@@ -402,6 +418,14 @@
   /**
    * Make an XHR request
    *
+   * {
+   *   url: '',
+   *   method: '',
+   *   headers: [],
+   *   params: {}
+   * }
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
    * @param {Object} config url, method, params, form
    * @param {Function} handler invoked on completion
    * @return {XMLHttpRequest} object making the request
@@ -412,7 +436,8 @@
       return null;
     }
 
-    const defaults = {
+    const
+    defaults = {
       form: null,
       url: '/',
       headers: {},
@@ -421,8 +446,6 @@
     };
 
     config = merge(defaults, config);
-
-    config.headers = config.headers ? config.headers : {};
 
     if (config.form) {
       config.form = getElement(config.form);
@@ -450,15 +473,33 @@
 
     } else { // post
       params = queryString(config.params);
-      config.headers['Content-type'] =  'application/x-www-form-urlencoded';
+      config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
 
+    config.headers['X-Requested-With'] = 'XMLHttpRequest';
+
     xhttp.open(config.method, url, true);
+
+    for (const h in config.headers) {
+      if (config.headers.hasOwnProperty(h)) {
+        xhttp.setRequestHeader(h, config.headers[h]);
+      }
+    }
+
     xhttp.send(params);
 
     return xhttp;
   },
 
+  /**
+   *
+   *
+   *
+
+  dataFromNode = function(node) {
+    
+  },
+   */
 
   /**
    * Retrieve the last non-empty element of an array
@@ -482,6 +523,7 @@
     return null;
   };
 
+
   module.exports = {
     Browser: {
       isTouch: isTouch
@@ -497,12 +539,14 @@
     },
     Object: {
       merge: merge,
+      fromForm: objectFromForm,
       queryString: queryString
     },
     XHR: {
       request: xhrRequest
     },
     Node: {
+//      data: dataFromNode,
       ancestor: ancestor,
       matches: selectorMatches,
       remove: removeNode,
