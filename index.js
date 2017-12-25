@@ -4,20 +4,22 @@
 
   'use strict';
 
+  /**
+   * rmr-util
+   *
+   * JS for your browser
+   *
+   *
+   *
+   */
+
   if (typeof window !== 'undefined') {
     window.document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('rmr-js');
     });
   }
 
-  /**
-   * rmr-util
-   * 
-   * JS for your browser
-   *
-   *
-   *
-   */
+
 
 
   const
@@ -37,14 +39,14 @@
    * Determine if a node matches a provided selector
    *
    * @param {HTMLElement} node  the element to be tested
-   * @param {String} the selector string to test
+   * @param {String} selector the selector string to test
    * @return {Bool} `true` or `false`
    */
   selectorMatches = function (node, selector) {
 
     const
     p = Element.prototype,
-    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || (s)  => {
+    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function(s) {
       return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
     };
 
@@ -497,7 +499,7 @@
    *
 
   dataFromNode = function(node) {
-    
+
   },
    */
 
