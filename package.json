@@ -8,18 +8,17 @@
     "test": "mocha test",
     "docs": "./node_modules/.bin/esdoc"
   },
-  "author" : {
-    "name" : "davidfmiller",
-    "url" : "https://readmeansrun.com"
+  "author": {
+    "name": "davidfmiller",
+    "url": "https://readmeansrun.com"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/davidfmiller/rmr-util.git"
   },
-  "bugs" : {
-    "url" : "https://github.com/davidfmiller/rmr-util/issues"
-  }
-  "author": "davidfmiller",
+  "bugs": {
+    "url": "https://github.com/davidfmiller/rmr-util/issues"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
