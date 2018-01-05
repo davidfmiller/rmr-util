@@ -37,7 +37,7 @@
 
     const
     p = Element.prototype,
-    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || (s)  => {
+    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function(s) {
       return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
     };
 
