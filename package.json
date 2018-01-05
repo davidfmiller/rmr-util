@@ -26,6 +26,7 @@
     "chai": "^4.1.2",
     "esdoc": "^1.0.4",
     "esdoc-standard-plugin": "^1.0.0",
+    "marked": "^0.3.9",
     "uglify-es": "^3.3.4",
     "webpack": "^3.10.0"
   },
