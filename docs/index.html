@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
 
   <title>rmr-util</title>
   <!--<link rel="stylesheet" type="text/css" href="build/modal.css">-->
   <link rel="stylesheet" type="text/css" href="https://davidfmiller.github.io/man/man.css">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- styles for this page 
+  <!-- styles for this page
   <link rel="stylesheet" type="text/css" href="index.css">
   -->
 </head>
@@ -34,6 +35,7 @@
       <button class="">Submit</button>
     </form>
 
+
     <form class="xhr" action="xhr/form.php" method="post">
       <input type="checkbox" name="check" value="rmr">
       <input type="text" name="text" value="" placeholder="text">
@@ -41,8 +43,66 @@
       <button class="">Post</button>
     </form>
     <ul id="xhr-log">
-    
+
     </ul>
+
+  </div>
+  <script src="build/rmr-util.bundle.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const LANG = {
+        'en' : {
+          'test' : 'neighbor'
+        },
+        'en-ca' : {
+          'test' : 'neighbour'
+        }
+      };
+      console.log(RMR.Browser.isTouch());
+      console.log(RMR.String.localize(LANG, 'test'));
+
+      console.log(RMR.Array.remove(['a', 'b', 'c'], 'c'));
+
+      console.log(RMR.Node.ancestor(document.querySelector('#xhr-log'), '#man'));
+      const
+      buttons = RMR.Array.coerce(document.querySelectorAll('button.xhr')),
+      forms = RMR.Array.coerce(document.querySelectorAll('form.xhr')),
+      log = RMR.Node.get('#xhr-log');
+      for (const i in buttons) {
+        if (! buttons.hasOwnProperty(i)) {
+          continue;
+        }
+        buttons[i].addEventListener('click', function(e) {
+          RMR.XHR.request({
+            url: e.target.getAttribute('data-url'),
+            method: 'get',
+            params: {}
+          }, function(xhr) {
+            var div = RMR.Node.make('li');
+            div.innerHTML = xhr.responseText;
+            log.appendChild(div);
+          });
+        });
+      }
+      for (const i in forms) {
+        if (! forms.hasOwnProperty(i)) {
+          continue;
+        }
+        forms[i].querySelector('button').addEventListener('click', function(e) {
+          e.preventDefault();
+          RMR.XHR.request({
+            form: e.target.form,
+          }, function(xhr) {
+            var div = RMR.Node.make('li');
+            div.innerHTML = xhr.responseText;
+            log.appendChild(div);
+          });
+        });
+      }
+      var target = document.querySelector('.set-styles');
+      RMR.Node.setStyles(target, { color: 'red', backgroundColor: 'blue' });
+    });
+  </script>
 
 </body>
 </html>

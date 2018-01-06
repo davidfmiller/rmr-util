@@ -132,6 +132,26 @@
     return ret;
   },
 
+
+  /**
+   * Remove an object from an array
+   *
+   * @param {Array} array containing object to be removed
+   * @param {Any} item to be removed
+   * @return {Array} array for chaining
+   */
+  arrayRemove = function(array, item) {
+
+    array =arr(array);
+
+    const index = array.indexOf(item);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
+
+    return array;
+  },
+
   /**
    * Retrieve an element via query selector
    *
@@ -537,7 +557,8 @@
     },
     Array: {
       coerce: arr,
-      last: lastValue
+      last: lastValue,
+      remove: arrayRemove
     },
     Object: {
       merge: merge,
