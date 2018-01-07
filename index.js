@@ -570,7 +570,7 @@
     });
   }
 
-  if (isTouch || true) {
+  if (isTouch()) {
 
     const resizer = function() {
 
