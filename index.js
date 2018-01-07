@@ -13,15 +13,6 @@
    *
    */
 
-  if (typeof window !== 'undefined') {
-    window.document.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('rmr-js');
-    });
-  }
-
-
-
-
   const
 
   /**
@@ -571,6 +562,33 @@
       getRect: getRect,
       setStyles: setStyles
     }
+  };
+
+  if (typeof window !== 'undefined') {
+    window.document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('rmr-js');
+    });
+  }
+
+  if (isTouch || true) {
+
+    const resizer = function() {
+
+      const
+      body = document.body,
+      cls = window.innerWidth > window.innerHeight ? 'rmr-landscape' : 'rmr-portrait';
+
+      body.classList.remove('rmr-landscape');
+      body.classList.remove('rmr-portrait');
+
+      body.classList.add(cls);
+    };
+
+    window.addEventListener('orientationchange', function() {
+      resizer();
+    });
+
+    resizer();
   };
 
 })();
