@@ -424,8 +424,9 @@
    * Make an XHR request
    *
    * {
-   *   url: '',
-   *   method: '',
+   *   form: {selector} - form element to serialize and submit via xhr
+   *   url: '{string}',
+   *   method: '{GET|POST}',
    *   headers: [],
    *   params: {}
    * }
@@ -590,5 +591,17 @@
 
     resizer();
   };
+
+
+  (function() {
+    var elements = ['section', 'article', 'aside', 'header', 'footer', 'nav', 'figure', 'figcaption', 'time', 'mark', 'main'];
+    for (const i in elements) {
+      if (elements.hasOwnProperty(i)) {
+        console.log(elements[i]);
+        document.createElement(elements[i]);
+      }
+    }
+  })();
+  
 
 })();
