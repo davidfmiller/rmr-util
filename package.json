@@ -1,6 +1,6 @@
 {
   "name": "rmr-util",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "JS for your browser",
   "url": "https://davidfmiller.github.io/rmr-util/",
   "license": "ISC",
@@ -15,8 +15,8 @@
     "type": "git",
     "url": "https://github.com/davidfmiller/rmr-util.git"
   },
-  "bugs" : {
-    "url" : "https://github.com/davidfmiller/rmr-util/issues"
+  "bugs": {
+    "url": "https://github.com/davidfmiller/rmr-util/issues"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

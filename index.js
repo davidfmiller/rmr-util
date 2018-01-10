@@ -217,6 +217,9 @@
   getRect = function(node) {
 
     node = getElement(node);
+    if (!node) {
+      return null;
+    }
 
     const
     rect = node.getBoundingClientRect(),
