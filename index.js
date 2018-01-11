@@ -13,6 +13,15 @@
    *
    */
 
+  if (typeof window !== 'undefined') {
+    window.document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('rmr-js');
+    });
+  }
+
+
+
+
   const
 
   /**
@@ -331,6 +340,30 @@
    * @param {Element} form element
    * @return {Object} the key/value pairs for the form
    */
+  objectKeys = function(obj) {
+
+    if (typeof Object !== "undefined" && typeof(Object.keys) !== "undefined") {
+      return Object.keys(obj);
+    }
+
+    const a = [];
+    for (const i in obj) {
+      if (obj.hasOwnProperty(i)) {
+        a.push(i);
+      }
+    }
+
+    return a;
+  },
+
+
+  /**
+   * Generate an object containing keys/values corresponding to form elements
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
+   * @param {Element} form element
+   * @return {Object} the key/value pairs for the form
+   */
   objectFromForm = function(form) {
 
     form = getElement(form);
@@ -474,8 +507,7 @@
     params = '';
 
     if (config.method.toUpperCase() === 'GET') {
-      url = config.params ? (url + '?' + queryString(config.params)) : url;
-
+      url = Object.keys(config.params).count > 0 ? (url + '?' + queryString(config.params)) : url;
     } else { // post
       params = queryString(config.params);
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -544,6 +576,7 @@
       remove: arrayRemove
     },
     Object: {
+      keys : objectKeys,
       merge: merge,
       fromForm: objectFromForm,
       queryString: queryString
@@ -562,33 +595,6 @@
       getRect: getRect,
       setStyles: setStyles
     }
-  };
-
-  if (typeof window !== 'undefined') {
-    window.document.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('rmr-js');
-    });
-  }
-
-  if (isTouch()) {
-
-    const resizer = function() {
-
-      const
-      body = document.body,
-      cls = window.innerWidth > window.innerHeight ? 'rmr-landscape' : 'rmr-portrait';
-
-      body.classList.remove('rmr-landscape');
-      body.classList.remove('rmr-portrait');
-
-      body.classList.add(cls);
-    };
-
-    window.addEventListener('orientationchange', function() {
-      resizer();
-    });
-
-    resizer();
   };
 
 })();

@@ -53,7 +53,7 @@
       <p>Set styles.</p>
     </div>
 
-    <button class="xhr" data-url="xhr/form.php?buh=1">XHR</button>
+    <button class="xhr" data-url="xhr/form.php?buh=a+_b">XHR</button>
     <button class="xhr" data-url="xhr/error.php">XHR Error</button>
 
     <form class="xhr" action="xhr/form.php" method="get">
@@ -86,6 +86,11 @@
           'test' : 'neighbour'
         }
       };
+
+      console.log(RMR.Browser.isTouch());
+
+      console.log(RMR.Object.keys({a : 'b'}));
+
       console.log(RMR.Browser.isTouch());
       console.log(RMR.String.localize(LANG, 'test'));
 
