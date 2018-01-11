@@ -226,6 +226,9 @@
   getRect = function(node) {
 
     node = getElement(node);
+    if (!node) {
+      return { top: 0, left: 0, right: 0, width: 0, height: 0 };
+    }
 
     const
     rect = node.getBoundingClientRect(),
@@ -457,8 +460,9 @@
    * Make an XHR request
    *
    * {
-   *   url: '',
-   *   method: '',
+   *   form: {selector} - form element to serialize and submit via xhr
+   *   url: '{string}',
+   *   method: '{GET|POST}',
    *   headers: [],
    *   params: {}
    * }
@@ -597,4 +601,42 @@
     }
   };
 
+  if (typeof window !== 'undefined') {
+    window.document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('rmr-js');
+    });
+  }
+
+  if (isTouch()) {
+
+    const resizer = function() {
+
+      const
+      body = document.body,
+      cls = window.innerWidth > window.innerHeight ? 'rmr-landscape' : 'rmr-portrait';
+
+      body.classList.remove('rmr-landscape');
+      body.classList.remove('rmr-portrait');
+
+      body.classList.add(cls);
+    };
+
+    window.addEventListener('orientationchange', function() {
+      resizer();
+    });
+
+    resizer();
+  };
+
+/*
+  (function() {
+    var elements = ['section', 'article', 'aside', 'header', 'footer', 'nav', 'figure', 'figcaption', 'time', 'mark', 'main'];
+    for (const i in elements) {
+      if (elements.hasOwnProperty(i)) {
+        console.log(elements[i]);
+        document.createElement(elements[i]);
+      }
+    }
+  })();
+*/
 })();
