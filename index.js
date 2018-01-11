@@ -65,8 +65,6 @@
     }
 
     return typeof window.orientation !== 'undefined';
-
-//    return 'ontouchstart' in window || navigator.msMaxTouchPoints;
   },
 
   /*
@@ -336,12 +334,12 @@
     },[]).join('&');
   },
 
+
   /**
-   * Generate an object containing keys/values corresponding to form elements
+   * Return an array of all keys in an object (polyfill for Object.keys)
    *
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
-   * @param {Element} form element
-   * @return {Object} the key/value pairs for the form
+   * @param {Object} obj object whose keys should be retrieved
+   * @return {Array} key list
    */
   objectKeys = function(obj) {
 
@@ -510,6 +508,13 @@
     url = config.url,
     params = '';
 
+    if (config.form) {
+      const type = config.form.getAttribute('enctype');
+      if (type) {
+        config.headers['Content-Type'] = type;
+      }
+    }
+
     if (config.method.toUpperCase() === 'GET') {
       url = Object.keys(config.params).count > 0 ? (url + '?' + queryString(config.params)) : url;
     } else { // post
@@ -580,7 +585,7 @@
       remove: arrayRemove
     },
     Object: {
-      keys : objectKeys,
+      keys: objectKeys,
       merge: merge,
       fromForm: objectFromForm,
       queryString: queryString
