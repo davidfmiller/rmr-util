@@ -1,0 +1,18 @@
+/**
+ RMR Media Queries
+ www.browserstrangeness.com/css_hacks.html
+ */
+ 
+/*
+@media not all and (min-resolution:.001dpcm) and (hover: hover) { @supports (-webkit-appearance:none) and (stroke-color:transparent) {
+
+}}
+*/
+
+@mixin safari-11($styles) {
+  @media not all and (min-resolution:.001dpcm) and (hover: hover) { @supports (-webkit-appearance:none) and (stroke-color:transparent) {
+
+    
+
+  }}
+}

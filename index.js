@@ -13,14 +13,6 @@
    *
    */
 
-  if (typeof window !== 'undefined') {
-    window.document.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('rmr-js');
-    });
-  }
-
-
-
 
   const
 
@@ -609,8 +601,15 @@
   if (typeof window !== 'undefined') {
     window.document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('rmr-js');
+
+      if (isTouch()) {
+        document.body.classList.add('rmr-touch');
+      }
+
     });
   }
+
+
 
   if (isTouch()) {
 
