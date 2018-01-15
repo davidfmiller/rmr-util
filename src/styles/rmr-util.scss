@@ -2,3 +2,11 @@
 
 /* index 
 */
+
+body {
+
+  @include safari-11 {
+    background: red;
+  }
+
+}
