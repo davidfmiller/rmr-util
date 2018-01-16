@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>rmr-util Styleguide</title>
+  <link rel="stylesheet" type="text/css" href="https://davidfmiller.github.io/man/man.css">
+
+  <link rel="stylesheet" type="text/css" href="build/rmr-util.css">
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="mask-icon" href="favicon.svg" color="#d0021b">
+
+  <meta property="og:title" content="rmr-util">
+  <meta property="og:description" content="JS for your browser">
+  <meta property="og:email" content="davidfmiller@me.com">
+  <meta property="og:url" content="https://davidfmiller.github.io/rmr-util">
+  <meta property="fb:admins" content="eldaverino">
+  <meta property="og:image" content="./og-image.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+  </style>
+
+</head>
+<body>
+  <div id="man">
+    <h1><i>🔧</i> RMR Styleguide</h1>
+
+    <h2>JavaScript</h2>
+    <h3>Constructor arguments</h3>
+    <p>Key arguments to constructors should be passed via key/value pairs within an object, ex:</p>
+    <pre>{
+  node : '#selector'
+}</pre>
+
+    <p>Event notifications that an object fires are passed to the constructor as an object through the <code>'on'</code> key</p>
+
+    <pre>{
+  …
+  on : {
+    load : function() { },
+    error : function() { }
+  }
+}</pre>
+
+
+    <script src="https://davidfmiller.github.io/man/man.js"></script>
+    <script>
+      window.Man({pre : true});
+    </script>
+  </div>
+</body>
+</html>

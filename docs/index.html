@@ -4,7 +4,6 @@
   <meta charset="utf-8">
 
   <title>rmr-util</title>
-  <!--<link rel="stylesheet" type="text/css" href="build/modal.css">-->
   <link rel="stylesheet" type="text/css" href="https://davidfmiller.github.io/man/man.css">
 
   <link rel="stylesheet" type="text/css" href="build/rmr-util.css">
@@ -77,9 +76,13 @@
     </ul>
 
   </div>
+  <script src="https://davidfmiller.github.io/man/man.js"></script>
   <script src="build/rmr-util.bundle.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+      window.Man({pre : true});
+
       const LANG = {
         'en' : {
           'test' : 'neighbor'
