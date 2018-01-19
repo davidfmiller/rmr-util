@@ -15,6 +15,16 @@
 
 
 /**
+ Firefox
+ **/
+@mixin firefox {
+  @supports (-moz-appearance:meterbar) {
+    @content;
+  }
+}
+
+
+/**
 
  Safari hacks
 
