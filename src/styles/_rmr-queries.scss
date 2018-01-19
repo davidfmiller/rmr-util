@@ -24,6 +24,14 @@
 }
 
 
+/* safari/chrome mobile */
+@mixin webkit-mobile {
+  @supports (-webkit-text-size-adjust:none) and (not (-ms-ime-align:auto)) and (not (-moz-appearance:none)) {
+    @content;
+  }
+}
+
+
 /**
 
  Safari hacks
