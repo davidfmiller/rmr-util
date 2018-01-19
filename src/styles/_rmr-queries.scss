@@ -5,6 +5,21 @@
  */
 
 
+@mixin touch-device {
+
+  @media (pointer: coarse) {
+    @content;
+  }
+
+}
+
+
+/**
+
+ Safari hacks
+
+ **/
+
 /* Any non-Microsoft modern browser (Safari 9+, Chrome 28+, Firefox 22+)*/
 @mixin not-ie {
   @supports (not (-ms-ime-align:auto)) {
