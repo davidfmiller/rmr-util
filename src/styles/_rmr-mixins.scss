@@ -5,18 +5,28 @@
  */
 
 
-@mixin touch-device {
-
+@mixin rmr-touch-device {
   @media (pointer: coarse) {
     @content;
   }
 }
 
+@mixin rmr-clear-float {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  width: 0;
+}
+
+
 
 /**
  Firefox
  **/
-@mixin firefox {
+@mixin rmr-firefox {
   @supports (-moz-appearance:meterbar) {
     @content;
   }
@@ -24,7 +34,7 @@
 
 
 /* safari/chrome mobile */
-@mixin webkit-mobile {
+@mixin rmr-webkit-mobile {
   @supports (-webkit-text-size-adjust:none) and (not (-ms-ime-align:auto)) and (not (-moz-appearance:none)) {
     @content;
   }
@@ -38,35 +48,35 @@
  **/
 
 /* Any non-Microsoft modern browser (Safari 9+, Chrome 28+, Firefox 22+)*/
-@mixin not-ie {
+@mixin rmr-not-ie {
   @supports (not (-ms-ime-align:auto)) {
     @content;
   }
 }
 
 /* Safari 11 macOS & iOS */
-@mixin safari-11 {
+@mixin rmr-safari-11 {
   @media not all and (min-resolution:.001dpcm) and (hover: hover) { @supports (-webkit-appearance:none) and (stroke-color:transparent) {
     @content;
   }}
 }
 
 /* Microsoft Edge 12 */
-@mixin edge-12 {
+@mixin rmr-edge-12 {
   @supports (-ms-accelerator:true) and (not (color:unset)) {
     @content;
   }
 }
 
 /* Microsoft Edge 13 */
-@mixin edge-13 {
+@mixin rmr-edge-13 {
   @supports (-ms-accelerator:true) and (color:unset) {
     @content;
   }
 }
 
 /* Microsoft Edge 13- */
-@mixin edge-13-and-below {
+@mixin rmr-edge-13-and-below {
   @supports (-ms-accelerator:true) {
     @content;
   }
