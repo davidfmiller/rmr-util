@@ -3,14 +3,14 @@
 
 
 /*
+
 body {
  @include safari-11 {
   background: red;
  }
 }
-*/
 
-/*
+
 body {
   @include touch-device {
     background: blue;
@@ -23,4 +23,13 @@ body {
   @include webkit-mobile {
     background: purple;
   }
-}*/
+}
+
+
+
+body {
+  @include firefox {
+    background: purple;
+  }
+}
+*/
