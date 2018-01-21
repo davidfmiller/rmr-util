@@ -55,8 +55,33 @@
     if (typeof window === 'undefined' || typeof navigator === 'undefined') {
       return false;
     }
-
     return typeof window.orientation !== 'undefined';
+  },
+
+  /**
+   * Determine if we're in Safari
+   *
+   * @return {Bool} `true` or `false`
+   */
+  isSafari = function() {
+
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      return false;
+    }
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  },
+
+  /**
+   * Determine if we're in Safari
+   *
+   * @return {Bool} `true` or `false`
+   */
+  isFirefox = function() {
+
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      return false;
+    }
+    return navigator.userAgent.indexOf("Firefox") > 0;
   },
 
   /*
@@ -564,7 +589,9 @@
 
   module.exports = {
     Browser: {
-      isTouch: isTouch
+      isTouch: isTouch,
+      isSafari : isSafari,
+      isFirefox : isFirefox,
     },
     String: {
       isURL: isURL,
