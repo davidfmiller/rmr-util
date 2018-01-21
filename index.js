@@ -84,6 +84,16 @@
     return navigator.userAgent.indexOf("Firefox") > 0;
   },
 
+  /**
+   * Is the browser capable of opening new windows/tabs with "data:" protocol
+   *
+   * @see https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/GbVcuwg_QjM%5B1-25%5D
+   * @return {Bool}
+   */
+  opensData = function() {
+    return isFirefox() || isSafari();
+  },
+
   /*
    * Generate a unique string suitable for id attributes
    *
@@ -592,6 +602,7 @@
       isTouch: isTouch,
       isSafari : isSafari,
       isFirefox : isFirefox,
+      opensData : opensData,
     },
     String: {
       isURL: isURL,
