@@ -22,7 +22,6 @@
 }
 
 
-
 /**
  Firefox
  **/
@@ -36,9 +35,22 @@
 /* safari/chrome mobile */
 @mixin rmr-webkit-mobile {
   @supports (-webkit-text-size-adjust:none) and (not (-ms-ime-align:auto)) and (not (-moz-appearance:none)) {
+    @media (max-device-width:1024px) {
+      @content;
+    }
+  }
+}
+
+/**
+ *
+ *
+
+@mixin rmr-window-large {
+  @media all and (min-width: 1000px) {
     @content;
   }
 }
+*/
 
 
 /**

@@ -19,19 +19,26 @@ body {
   }
 }
 
-
+*/
 body {
-  background: red;
-  @include webkit-mobile {
+  background: blue;
+  @include rmr-webkit-mobile {
     background: purple;
   }
 }
-
+/*
 
 
 body {
   @include firefox {
     background: purple;
+  }
+}
+
+
+body {
+  @include rmr-window-large {
+    background: red;
   }
 }
 */
