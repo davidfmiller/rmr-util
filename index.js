@@ -656,39 +656,36 @@
 
       if (isTouch()) {
         document.body.classList.add('rmr-touch');
+
+        const resizer = function() {
+
+          const
+          body = document.body,
+          cls = window.innerWidth > window.innerHeight ? 'rmr-landscape' : 'rmr-portrait';
+
+          body.classList.remove('rmr-landscape');
+          body.classList.remove('rmr-portrait');
+
+          body.classList.add(cls);
+        };
+
+        window.addEventListener('orientationchange', function() {
+          resizer();
+        });
+
+        resizer();
+
+      } else {
+        const
+        body = document.body,
+        cls = 'rmr-hover';
+
+        body.addEventListener('mouseenter', function(e) { body.classList.add(cls); });
+        body.addEventListener('mouseleave', function(e) { body.classList.remove(cls); });
       }
-
     });
-
-    const
-    body = document.body,
-    cls = 'rmr-hover';
-
-    body.addEventListener('mouseenter', function(e) { body.classList.add(cls); });
-    body.addEventListener('mouseleave', function(e) { body.classList.remove(cls); });
-
   }
 
-  if (isTouch()) {
-
-    const resizer = function() {
-
-      const
-      body = document.body,
-      cls = window.innerWidth > window.innerHeight ? 'rmr-landscape' : 'rmr-portrait';
-
-      body.classList.remove('rmr-landscape');
-      body.classList.remove('rmr-portrait');
-
-      body.classList.add(cls);
-    };
-
-    window.addEventListener('orientationchange', function() {
-      resizer();
-    });
-
-    resizer();
-  }
 
 /*
   (function() {
