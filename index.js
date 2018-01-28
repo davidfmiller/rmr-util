@@ -659,9 +659,15 @@
       }
 
     });
+
+    const
+    body = document.body,
+    cls = 'rmr-hover';
+
+    body.addEventListener('mouseenter', function(e) { body.classList.add(cls); });
+    body.addEventListener('mouseleave', function(e) { body.classList.remove(cls); });
+
   }
-
-
 
   if (isTouch()) {
 
@@ -682,7 +688,7 @@
     });
 
     resizer();
-  };
+  }
 
 /*
   (function() {
