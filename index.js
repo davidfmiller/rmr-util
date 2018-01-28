@@ -22,8 +22,102 @@
    */
    Base64 = {
     _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
-    encode: function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},
-    decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}
+    encode: function(e) {
+      let t="";
+      let n,r,i,s,o,u,a;
+      let f=0;
+      e = Base64._utf8_encode(e);
+      while (f <e.length) {
+        n = e.charCodeAt(f++);
+        r = e.charCodeAt(f++);
+        i = e.charCodeAt(f++);
+        s = n >> 2;
+        o = (n&3)<<4|r>>4;
+        u=(r&15)<<2|i>>6;
+        a = i & 63;
+        if (isNaN(r)) {
+          u = a = 64;
+        } else if (isNaN(i)) {
+          a =64;
+        }
+        t = t + this._keyStr.charAt(s) + this._keyStr.charAt(o) + this._keyStr.charAt(u) + this._keyStr.charAt(a);
+      }
+      return t;
+    },
+
+    decode: function(e) {
+
+      let t = "";
+      let n,r,i, s,o,u,a;
+      let f = 0;
+
+      e = e.replace(/[^A-Za-z0-9\+\/\=]/g,"");
+
+      while (f < e.length) {
+        s = this._keyStr.indexOf(e.charAt(f++));
+        o = this._keyStr.indexOf(e.charAt(f++));
+        u = this._keyStr.indexOf(e.charAt(f++));
+        a = this._keyStr.indexOf(e.charAt(f++));
+        n = s << 2 | o>>4;
+        r = (o & 15) << 4 | u >> 2;
+        i = (u & 3) << 6 | a;
+        t = t + String.fromCharCode(n);
+        if (u !== 64) {
+          t = t+String.fromCharCode(r);
+        }
+        if (a !== 64) {
+          t = t+String.fromCharCode(i);
+        }
+      }
+      t = Base64._utf8_decode(t);
+      return t;
+    },
+    _utf8_encode: function(e) {
+      e = e.replace(/\r\n/g,"\n");
+      let t="",
+      n = 0;
+      for (n = 0; n < e.length;n++) {
+        const r = e.charCodeAt(n);
+        if (r < 128) {
+          t += String.fromCharCode(r);
+        } else if (r > 127 && r < 2048) {
+          t += String.fromCharCode(r>>6|192);
+          t += String.fromCharCode(r&63|128);
+        } else {
+          t += String.fromCharCode(r>>12|224);
+          t += String.fromCharCode(r>>6&63|128);
+          t += String.fromCharCode(r&63|128);
+        }
+      }
+      return t;
+    },
+
+    _utf8_decode: function(e) {
+      let
+      t = "",
+      n = 0,
+      r = 0,
+      c2 = 0,
+      c3 = 0;
+
+      while (n < e.length) {
+        r = e.charCodeAt(n);
+        if (r<128) {
+          t += String.fromCharCode(r);
+          n++;
+        } else if (r > 191 && r < 224) {
+          c2 = e.charCodeAt(n+1);
+          t += String.fromCharCode((r&31)<<6|c2&63);
+          n += 2;
+        } else {
+          c2 = e.charCodeAt(n+1);
+          c3 = e.charCodeAt(n+2);
+          t += String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);
+          n += 3;
+        }
+      }
+      return t;
+    }
   },
 
   /**
@@ -48,7 +142,7 @@
 
     const
     p = Element.prototype,
-    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function(s) {
+    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function matches(s) {
       return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
     };
 
@@ -98,7 +192,7 @@
    * Is the browser capable of opening new windows/tabs with "data:" protocol
    *
    * @see https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/GbVcuwg_QjM%5B1-25%5D
-   * @return {Bool}
+   * @return {Bool} `true` if the browser opens `data:` URLs; `false` if not
    */
   opensData = function() {
     return isFirefox() || isSafari();
@@ -189,8 +283,21 @@
     if (typeof arg === 'string') {
       return document.querySelector(arg);
     }
-
     return arg;
+  },
+
+  /**
+   * Retrieve an element via query selector
+   *
+   * @param {Mixed} arg the element to retrieve
+   * @return {[Element]} array of elements
+   */
+  getElements = function(arg) {
+    if (typeof arg === 'string') {
+      return arr(document.querySelectorAll(arg));
+    }
+
+    return arr(arg);
   },
 
   /*
@@ -444,6 +551,24 @@
   },
 
   /**
+   * Add event listener to >= 1 node
+   *
+   * @param {String} selector to match nodes
+   * @param {String} eventName the event which should be listened for
+   * @param {Function} func the method to invoke when eventName occurs
+   */
+  addListener = function(selector, eventName, func) {
+    const nodes = getElements(selector);
+    let i = 0;
+
+    for (i in nodes) {
+      if (nodes.hasOwnProperty(i)) {
+        nodes[i].addEventListener(eventName, func);
+      }
+    }
+  },
+
+  /**
    * Get a node's ancestor
    *
    * @param {Element} node starting point of search
@@ -608,12 +733,12 @@
 
 
   module.exports = {
-    Base64 : Base64,
+    Base64: Base64,
     Browser: {
       isTouch: isTouch,
-      isSafari : isSafari,
-      isFirefox : isFirefox,
-      opensData : opensData,
+      isSafari: isSafari,
+      isFirefox: isFirefox,
+      opensData: opensData
     },
     String: {
       isURL: isURL,
@@ -641,6 +766,8 @@
       remove: removeNode,
       loader: loader,
       get: getElement,
+      getAll: getElements,
+      listen: addListener,
 
       // TODO: deprecate `make`
       make: makeElement,
@@ -669,7 +796,7 @@
           body.classList.add(cls);
         };
 
-        window.addEventListener('orientationchange', function() {
+        window.addEventListener('orientationchange', () => {
           resizer();
         });
 
@@ -680,8 +807,13 @@
         body = document.body,
         cls = 'rmr-hover';
 
-        body.addEventListener('mouseenter', function(e) { body.classList.add(cls); });
-        body.addEventListener('mouseleave', function(e) { body.classList.remove(cls); });
+        body.addEventListener('mouseenter', () => {
+          body.classList.add(cls);
+        });
+
+        body.addEventListener('mouseleave', () => {
+          body.classList.remove(cls);
+        });
       }
     });
   }
