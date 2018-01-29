@@ -106,6 +106,8 @@
 
       console.log(RMR.Browser.isTouch());
 
+      RMR.Node.listen('button', 'click', function(e) { console.log('button click', e.target) });
+
       console.log(RMR.Object.keys({a:'b'}));
 
       console.log(RMR.Browser.isTouch());

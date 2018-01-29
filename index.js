@@ -289,7 +289,7 @@
   /**
    * Retrieve an element via query selector
    *
-   * @param {Mixed} arg the element to retrieve
+   * @param {Mixed} arg selector, or an array of elements to attach
    * @return {[Element]} array of elements
    */
   getElements = function(arg) {
