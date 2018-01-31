@@ -93,6 +93,26 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
 
+      const key = RMR.Keyboard;
+
+      document.body.addEventListener('keyup', function(e) {
+        switch(e.keyCode) {
+
+          case key.escape:
+            console.log('escape!!!');
+            break;
+
+          case key.next:
+            console.log('next!!!');
+            break;
+
+          case key.previous:
+            console.log('previous!!!');
+            break;
+        
+        }
+      });
+
       window.Man({pre : true});
 
       const LANG = {
