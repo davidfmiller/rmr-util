@@ -733,7 +733,20 @@
 
 
   module.exports = {
+
     Base64: Base64,
+
+    // document.body.addEventListener('keyup', function(e){ console.log(e.keyCode); });
+    Keyboard: {
+      next: 39,
+      previous: 37,
+      up: 38,
+      down: 40,
+      escape: 27,
+      enter: 13,
+      space: 32
+    },
+
     Browser: {
       isTouch: isTouch,
       isSafari: isSafari,
