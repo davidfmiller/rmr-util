@@ -96,6 +96,12 @@
       const key = RMR.Keyboard;
 
       document.body.addEventListener('keyup', function(e) {
+
+        var ordinal = key.ordinal(e.keyCode);
+        if (ordinal >= 0) {
+          console.log(ordinal);
+        }
+
         switch(e.keyCode) {
 
           case key.escape:
