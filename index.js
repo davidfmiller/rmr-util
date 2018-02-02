@@ -744,7 +744,26 @@
       down: 40,
       escape: 27,
       enter: 13,
-      space: 32
+      space: 32,
+
+      /**
+       * Return the ordinal (0-9) of a keypress; -1 if N/A, key "0" return ordinal 9
+       *
+       * @param {Integer|Event} keyCode either the key code or the window event for a `keypress`
+       * @return {Integer} ordinal for the key, or -1 if N/A
+       */
+      ordinal: function(keyCode) {
+
+        keyCode = parseInt(typeof keyCode !== 'number' ? keyCode.keyCode : keyCode, 10);
+
+        if (keyCode === 48) {
+          return 9;
+        } else if (keyCode >= 49 && keyCode <= 57) {
+          return keyCode - 49;
+        }
+
+        return -1;
+      }
     },
 
     Browser: {
