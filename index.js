@@ -747,6 +747,16 @@
       space: 32,
 
       /**
+       * Determine if a keyboardEvent has a modifier key associated
+       * 
+       * @param {KeyboardEvent} e the event
+       * @return {Bool} 
+       */
+      hasModifier: function(e) {
+        return e.metaKey || e.altKey || e.ctrlKey || e.shiftKey;
+      },
+
+      /**
        * Return the ordinal (0-9) of a keypress; -1 if N/A, key "0" return ordinal 9
        *
        * @param {Integer|Event} keyCode either the key code or the window event for a `keypress`

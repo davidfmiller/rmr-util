@@ -97,34 +97,37 @@
 
       document.body.addEventListener('keyup', function(e) {
 
+        var modified = RMR.Keyboard.hasModifier(e);
+
         var ordinal = key.ordinal(e.keyCode);
         if (ordinal >= 0) {
-          console.log(ordinal);
+          console.log(ordinal, modified);
         }
 
         switch(e.keyCode) {
 
           case key.escape:
-            console.log('⎋');
+            console.log('⎋', modified);
             break;
 
           case key.next:
-            console.log('→');
+            console.log('→', modified);
             break;
 
           case key.up:
-            console.log('↑');
+            console.log('↑', modified);
             break;
 
           case key.down:
-            console.log('↓');
+            console.log('↓', modified);
             break;
 
           case key.previous:
-            console.log('←');
+            console.log('←', modified);
             break;
-        
         }
+
+
       });
 
       window.Man({pre : true});
