@@ -25,8 +25,13 @@
 
   <style>
 
+    .zoom:hover {
+      -webkit-animation: rmr-zoom 300ms ease-out;
+      -moz-animation: rmr-zoom 300ms ease-out;
+    }
+
     body {
-      transition: background 0.2s;
+      transition: background-color 0.2s;
     }
 
     body.rmr-portrait {
@@ -38,7 +43,7 @@
     }
 
     body.rmr-hover {
-      background: red;
+      background: #eee;
     }
   </style>
 
@@ -58,6 +63,8 @@
     <ul>
       <li><code>box-sizing: border-box</code> applied</li>
     </ul>
+
+    <b class="zoom" style="background: purple; display: block; width: 100px; height: 40px; ">zoom</b>
 
     <div class="set-styles">
       <p>Set styles.</p>
