@@ -790,7 +790,32 @@
     Array: {
       coerce: arr,
       last: lastValue,
-      remove: arrayRemove
+      remove: arrayRemove,
+
+      /**
+       *
+       *
+       * @param {Array} array
+       * @param {Function} comparator function that takes on argument
+       * @return {Integer}
+       */
+      find: function(list, func) {
+
+        var
+        i = 0,
+        array = arr(list);
+
+        for (const i in array) {
+          if (array.hasOwnProperty(i)) {
+            if (array[i] == func || func(array[i])) {
+              return parseInt(i, 10);
+              break;
+            }
+          }
+        }
+
+        return -1;
+      }
     },
     Object: {
       keys: objectKeys,
