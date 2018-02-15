@@ -27,18 +27,13 @@ describe('rmr-util', function() {
   it('RMR.Date', function date() {
     expect(RMR.Date.fromRFC3339('')).to.equal(null);
 
-    var d = RMR.Date.fromRFC3339('2015-01-25T00:00:00-0700');
+    const d = RMR.Date.fromRFC3339('2015-01-25T00:00:00-0700');
     expect(d).to.not.equal(null);
     expect(d.getDate()).to.not.equal(25);
     expect(d.getMonth()).to.not.equal(1);
     expect(d.getYear()).to.not.equal(2015);
 
-//    console.log(
-//      RMR.Object.merge(
-//    );
-
-    //expect(RMR.Object.queryString({})).to.equal('');
-
+    expect(RMR.Date.toRFC3339(d)).to.equal('2015-01-25T07:00:00Z');
   });
 
 
@@ -50,8 +45,13 @@ describe('rmr-util', function() {
       { 'id': 'c' }
     ];
 
-    expect(RMR.Array.find(arr, function(obj) { return obj.id === 'b';})).to.equal(1);
-    expect(RMR.Array.find(arr, function(obj){ return obj.id === 'd';})).to.equal(-1);
+    expect(RMR.Array.find(arr, function(obj) {
+      return obj.id === 'b';
+    })).to.equal(1);
+
+    expect(RMR.Array.find(arr, function(obj) {
+      return obj.id === 'd';
+    })).to.equal(-1);
   });
 
   it('RMR.String', function fromPath() {

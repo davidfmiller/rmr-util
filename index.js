@@ -748,9 +748,9 @@
 
       /**
        * Determine if a keyboardEvent has a modifier key associated
-       * 
+       *
        * @param {KeyboardEvent} e the event
-       * @return {Bool} 
+       * @return {Bool} `true` if event has a modifier key attached (control, shift, command, alt, etc.); `false` if not
        */
       hasModifier: function(e) {
         return e.metaKey || e.altKey || e.ctrlKey || e.shiftKey;
@@ -776,28 +776,53 @@
       }
     },
 
-    Date : {
-      fromRFC3339 : function(dString) {
+    Date: {
+
+      /**
+       * Convert a Date instance to RFC 3339 format
+       *
+       * @param {Date} date to be formatted
+       * @return {String} Date in RFC 3339 format
+       * @see https://tools.ietf.org/html/rfc3339
+       */
+      toRFC3339: function(date) {
+
+        const pad = function(n) {
+          return n < 10 ? '0' + n : n;
+        };
+
+         return date.getUTCFullYear() + '-'
+              + pad(date.getUTCMonth()+1) + '-'
+              + pad(date.getUTCDate()) + 'T'
+              + pad(date.getUTCHours()) + ':'
+              + pad(date.getUTCMinutes()) + ':'
+              + pad(date.getUTCSeconds()) + 'Z';
+      },
+
+      fromRFC3339: function(dString) {
 
         if (! dString) {
           return null;
         }
 
-        var ret = new Date();
+        return new Date(dString);
 
-        var utcOffset, offsetSplitChar;
-        var offsetMultiplier = 1;
-        var dateTime = dString.split("T");
-        var date = dateTime[0].split("-");
-        var time = dateTime[1].split(":");
-        var offsetField = time[time.length - 1];
-        var offsetString;
-        var offsetFieldIdentifier = offsetField.charAt(offsetField.length - 1);
-        if (offsetFieldIdentifier == "Z") {
+        const ret = new Date();
+
+        let utcOffset, offsetSplitChar;
+        let offsetMultiplier = 1;
+        const dateTime = dString.split("T");
+        const date = dateTime[0].split("-");
+        const time = dateTime[1].split(":");
+        const offsetField = time[time.length - 1];
+        let offsetString;
+
+        const offsetFieldIdentifier = offsetField.charAt(offsetField.length - 1);
+        if (offsetFieldIdentifier === "Z") {
             utcOffset = 0;
             time[time.length - 1] = offsetField.substr(0, offsetField.length - 2);
         } else {
-            if (offsetField[offsetField.length - 1].indexOf("+") != -1) {
+            if (offsetField[offsetField.length - 1].indexOf("+") !== -1) {
                 offsetSplitChar = "+";
                 offsetMultiplier = 1;
             } else {
@@ -805,7 +830,7 @@
                 offsetMultiplier = -1;
             }
             offsetString = offsetField.split(offsetSplitChar);
-            time[time.length - 1] == offsetString[0];
+            time[time.length - 1] === offsetString[0];
             offsetString = offsetString[1].split(":");
             utcOffset = (offsetString[0] * 60) + offsetString[1];
             utcOffset = utcOffset * 60 * 1000;
@@ -833,21 +858,19 @@
       remove: arrayRemove,
 
       /**
+       * Return the index of an item in an array
        *
-       *
-       * @param {Array} array
-       * @param {Function} comparator function that takes on argument
-       * @return {Integer}
+       * @param {Array} list that should be searched
+       * @param {Function} func comparator function that takes on argument
+       * @return {Integer} index of the item in the array, or -1 if it doesn't exist
        */
       find: function(list, func) {
 
-        var
-        i = 0,
-        array = arr(list);
+        const array = arr(list);
 
         for (const i in array) {
           if (array.hasOwnProperty(i)) {
-            if (array[i] == func || func(array[i])) {
+            if (array[i] === func || func(array[i])) {
               return parseInt(i, 10);
               break;
             }
