@@ -19,9 +19,10 @@ describe('rmr-util', function() {
 //      RMR.Object.merge(
 //    );
 
-    //expect(RMR.Object.queryString({})).to.equal('');
+    // expect(RMR.Object.queryString({})).to.equal('');
 
   });
+
 
   it('RMR.Date', function date() {
     expect(RMR.Date.fromRFC3339('')).to.equal(null);
@@ -41,7 +42,20 @@ describe('rmr-util', function() {
   });
 
 
-  it('RMR.String', function string() {
+  it('RMR.Array', function() {
+
+    const arr = [
+      { 'id': 'a' },
+      { 'id': 'b' },
+      { 'id': 'c' }
+    ];
+
+    expect(RMR.Array.find(arr, function(obj) { return obj.id === 'b';})).to.equal(1);
+    expect(RMR.Array.find(arr, function(obj){ return obj.id === 'd';})).to.equal(-1);
+  });
+
+  it('RMR.String', function fromPath() {
+
     expect(RMR.String.isURL('http://readmeansrun.com')).to.equal(true);
     expect(RMR.String.isURL('https://readmeansrun.com')).to.equal(true);
     expect(RMR.String.isURL('www.readmeansrun.com')).to.equal(false);

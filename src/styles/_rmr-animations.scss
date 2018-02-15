@@ -1,0 +1,43 @@
+@-webkit-keyframes rmr-zoom {
+    15%, 40%, 75%, 100% {
+        -webkit-transform-origin: center center
+    }
+
+    15% {
+        -webkit-transform: scale(1.2, 1.1)
+    }
+
+    40% {
+        -webkit-transform: scale(0.95, 0.95)
+    }
+
+    75% {
+        -webkit-transform: scale(1.05, 1)
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1)
+    }
+}
+
+@-moz-keyframes rmr-zoom {
+    15%, 40%, 75%, 100% {
+        -moz-transform-origin: center center
+    }
+
+    15% {
+        -moz-transform: scale(1.2, 1.1)
+    }
+
+    40% {
+        -moz-transform: scale(0.95, 0.95)
+    }
+
+    75% {
+        -moz-transform: scale(1.05, 1)
+    }
+
+    100% {
+        -moz-transform: scale(1, 1)
+    }
+}
