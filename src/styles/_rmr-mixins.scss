@@ -58,6 +58,11 @@
  Safari hacks
 
  **/
+@mixin rmr-hover {
+  @media not all and (hover: none) {
+    @content;
+  }
+}
 
 /* Any non-Microsoft modern browser (Safari 9+, Chrome 28+, Firefox 22+)*/
 @mixin rmr-not-ie {
