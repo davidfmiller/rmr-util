@@ -143,7 +143,7 @@
     const
     p = Element.prototype,
     f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function matches(s) {
-      return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
+      return [].indexOf.call(document.querySelectorAll(selector), this) !== -1;
     };
 
     return f.call(node, selector);
