@@ -100,6 +100,8 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
 
+      window.Man({pre : true});
+
       const key = RMR.Keyboard;
 
       document.body.addEventListener('keyup', function(e) {
@@ -133,11 +135,7 @@
             console.log('←', modified);
             break;
         }
-
-
       });
-
-      window.Man({pre : true});
 
       const LANG = {
         'en' : {
@@ -159,6 +157,9 @@
       console.log('firefox', RMR.Browser.isFirefox());
       console.log('data', RMR.Browser.opensData());
       console.log(RMR.String.localize(LANG, 'test'));
+
+      console.log('body: ' + RMR.Node.ancestor(RMR.Node.get('a'), 'body'));
+      console.log('adf: ' + RMR.Node.ancestor(RMR.Node.get('a'), 'adf'));
 
       console.log(RMR.Array.remove(['a', 'b', 'c'], 'c'));
 
