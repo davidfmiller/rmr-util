@@ -10,6 +10,9 @@ $grid-breakpoints: (
 ) !default;
 
 
+// ripped from bootstrap
+
+
 // Breakpoint viewport sizes and media queries.
 //
 // Breakpoints are defined as a map of (name: minimum width), order from small to large:
@@ -26,7 +29,7 @@ $grid-breakpoints: (
 //    md
 //    >> breakpoint-next(sm, $breakpoint-names: (xs sm md lg xl))
 //    md
-@function rmr-break-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
   $n: index($breakpoint-names, $name);
   @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
@@ -35,7 +38,7 @@ $grid-breakpoints: (
 //
 //    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    576px
-@function rmr-break-min($name, $breakpoints: $grid-breakpoints) {
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
   $min: map-get($breakpoints, $name);
   @return if($min != 0, $min, null);
 }
@@ -49,7 +52,7 @@ $grid-breakpoints: (
 //
 //    >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    767.98px
-@function rmr-breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
   $next: breakpoint-next($name, $breakpoints);
   @return if($next, breakpoint-min($next, $breakpoints) - .02px, null);
 }
@@ -61,7 +64,7 @@ $grid-breakpoints: (
 //    ""  (Returns a blank string)
 //    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
 //    "-sm"
-@function rmr-breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
   @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
 }
 
