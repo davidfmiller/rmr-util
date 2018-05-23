@@ -143,10 +143,13 @@
     const
     p = Element.prototype,
     f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function matches(s) {
-      return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
+      return [].indexOf.call(document.querySelectorAll(selector), this) !== -1;
     };
-
-    return f.call(node, selector);
+    try {
+      return f.call(node, selector);
+    } catch (e) {
+      return false;
+    }
   },
 
   /**
@@ -589,7 +592,16 @@
 
     let parent = node;
 
+    if (! parent.parentNode) {
+      return null;
+    }
+
     while ((parent = parent.parentNode) !== null) {
+
+      if (! parent instanceof Element) {
+        return null;
+      }
+
       if (selectorMatches(parent, ancestor)) {
         return parent;
       }
