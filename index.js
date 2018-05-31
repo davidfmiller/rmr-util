@@ -880,6 +880,24 @@
 
         const array = arr(list);
 
+        if (typeof func !== 'function') {
+
+          var target = func;
+
+          const lookup = function(param) {
+
+            if (typeof param === 'object' && param.hasOwnProperty('id')) {
+              if (typeof target === 'object' && target.hasOwnProperty('id')) {
+                return param.id == target.id
+              }
+              return param.id == target;
+            }
+
+            return param == target;
+           };
+          func = lookup;
+        }
+
         for (const i in array) {
           if (array.hasOwnProperty(i)) {
             if (array[i] === func || func(array[i])) {

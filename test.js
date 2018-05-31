@@ -40,10 +40,19 @@ describe('rmr-util', function() {
   it('RMR.Array', function() {
 
     const arr = [
-      { 'id': 'a' },
-      { 'id': 'b' },
-      { 'id': 'c' }
+      { id: 'a' },
+      { id: 'b' },
+      { id: 'c' },
+      5
     ];
+
+    expect(RMR.Array.find(arr, 5)).to.equal(3);
+    expect(RMR.Array.find(arr, 'b')).to.equal(1);
+    expect(RMR.Array.find(arr, { id: 'c' })).to.equal(2);
+
+    expect(RMR.Array.find(arr, function(obj) {
+      return obj.id === 'b';
+    })).to.equal(1);
 
     expect(RMR.Array.find(arr, function(obj) {
       return obj.id === 'b';
