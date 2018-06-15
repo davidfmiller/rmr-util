@@ -885,9 +885,9 @@
 
         if (typeof func !== 'function') {
 
-          const target = func;
-
-          const lookup = function(param) {
+          const
+          target = func,
+          lookup = function(param) {
 
             if (typeof param === 'object' && param.hasOwnProperty('id')) {
               if (typeof target === 'object' && target.hasOwnProperty('id')) {
