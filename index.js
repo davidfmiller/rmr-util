@@ -1,4 +1,4 @@
-/* global require, module, console, Promise */
+/* global require, module, console, Promise, HTMLElement */
 
 (() => {
 
@@ -142,7 +142,7 @@
 
     const
     p = Element.prototype,
-    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function matches(s) {
+    f = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || function matches() {
       return [].indexOf.call(document.querySelectorAll(selector), this) !== -1;
     };
     try {
@@ -279,16 +279,19 @@
   },
 
   /**
-   * Retrieve an element via query selector
+   * Retrieve an element via query selector, or
    *
-   * @param {Mixed} arg the element to retrieve
+   * @param {Mixed} arg the element to retrieve, or null if no such element exists
    * @return {Element} element corresponding to the selector (or null if none exists)
    */
   getElement = function(arg) {
     if (typeof arg === 'string') {
       return document.querySelector(arg);
+    } else if (arg instanceof HTMLElement) {
+      return arg;
     }
-    return arg;
+
+    return null;
   },
 
   /**
@@ -884,18 +887,18 @@
 
         if (typeof func !== 'function') {
 
-          var target = func;
-
-          const lookup = function(param) {
+          const
+          target = func,
+          lookup = function(param) {
 
             if (typeof param === 'object' && param.hasOwnProperty('id')) {
               if (typeof target === 'object' && target.hasOwnProperty('id')) {
-                return param.id == target.id
+                return param.id === target.id;
               }
-              return param.id == target;
+              return param.id === target;
             }
 
-            return param == target;
+            return param === target;
            };
           func = lookup;
         }
