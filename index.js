@@ -292,6 +292,27 @@
     return null;
   },
 
+
+  /**
+   * Remove all children from a node
+   *
+   * @param {Mixed} arg -
+   * @return HTMLElement for chaining
+   */ 
+  pruneElement = function(arg) {
+
+    const node = getElement(arg);
+    if (! node) {
+      return null;
+    }
+    while (node.firstChild) {
+      node.removeChild(node.firstChild);
+    }
+
+    return node;
+  },
+
+
   /**
    * Retrieve an element via query selector
    *
@@ -930,6 +951,7 @@
       loader: loader,
       get: getElement,
       getAll: getElements,
+      prune: pruneElement,
       listen: addListener,
 
       // TODO: deprecate `make`
