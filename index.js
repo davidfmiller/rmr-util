@@ -298,9 +298,9 @@
   /**
    * Remove all children from a node
    *
-   * @param {Mixed} arg -
-   * @return HTMLElement for chaining
-   */ 
+   * @param {Mixed} arg - node or selector whose children should be removed
+   * @return {HTMLElement} - for chaining
+   */
   pruneElement = function(arg) {
 
     const node = getElement(arg);
