@@ -258,7 +258,9 @@
     }
 
     for (i = 0; i < list.length; i++) {
-      ret.push(list[i]);
+      if (list.hasOwnProperty(i)) {
+        ret.push(list[i]);
+      }
     }
 
     return ret;
