@@ -204,13 +204,19 @@
   /**
    * Scroll to an element
    *
-   * @param y {Integer}
-   * @param duration {Integer} - milliseconds
+   * @param {Integer} y - vertical offset to scroll to
+   * @param {Integer} duration - # of milliseconds animation should run
    */
   scrollTo = function(y, duration) {
 
-    const startingY = window.pageYOffset;
-    const diff = y - startingY;
+    if (arguments.length === 1) {
+      duration = 200;
+    }
+
+    const
+    startingY = window.pageYOffset,
+    diff = y - startingY;
+
     let start;
 
     // Bootstrap our animation - it will get called right before next frame shall be rendered.
@@ -220,10 +226,9 @@
         start = timestamp;
       }
 
-      // Elapsed milliseconds since start of scrolling.
-      const time = timestamp - start;
-      // Get percent of completion in range [0, 1].
-      const percent = Math.min(time / duration, 1);
+      const
+      time = timestamp - start,
+      percent = Math.min(time / duration, 1);
 
       window.scrollTo(0, startingY + diff * percent);
 
@@ -231,7 +236,7 @@
       if (time < duration) {
         window.requestAnimationFrame(step);
       }
-    })
+    });
   },
 
 
