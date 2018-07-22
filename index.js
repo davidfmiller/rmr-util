@@ -201,6 +201,40 @@
     return isFirefox() || isSafari();
   },
 
+  /**
+   * Scroll to an element
+   *
+   * @param y {Integer}
+   * @param duration {Integer} - milliseconds
+   */
+  scrollTo = function(y, duration) {
+
+    const startingY = window.pageYOffset;
+    const diff = y - startingY;
+    let start;
+
+    // Bootstrap our animation - it will get called right before next frame shall be rendered.
+    window.requestAnimationFrame(function step(timestamp) {
+
+      if (!start) {
+        start = timestamp;
+      }
+
+      // Elapsed milliseconds since start of scrolling.
+      const time = timestamp - start;
+      // Get percent of completion in range [0, 1].
+      const percent = Math.min(time / duration, 1);
+
+      window.scrollTo(0, startingY + diff * percent);
+
+      // Proceed with animation as long as we wanted it to.
+      if (time < duration) {
+        window.requestAnimationFrame(step);
+      }
+    })
+  },
+
+
   /*
    * Generate a unique string suitable for id attributes
    *
@@ -862,6 +896,7 @@
       isTouch: isTouch,
       isSafari: isSafari,
       isFirefox: isFirefox,
+      scrollTo: scrollTo,
       opensData: opensData
     },
     String: {
