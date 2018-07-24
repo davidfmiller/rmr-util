@@ -204,13 +204,17 @@
   /**
    * Scroll to an element
    *
-   * @param {Integer} y - vertical offset to scroll to
+   * @param {Mixed} y - vertical offset to scroll to, or selector/node references for the Element to scroll to
    * @param {Integer} duration - # of milliseconds animation should run
    */
   scrollTo = function(y, duration) {
 
     if (arguments.length === 1) {
       duration = 200;
+    }
+
+    if (typeof y == 'string' || y instanceof Element) {
+      y = RMR.Node.getRect(y).top;
     }
 
     const

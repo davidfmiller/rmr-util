@@ -45,6 +45,11 @@
     body.rmr-hover {
       background: #eee;
     }
+
+    .scroll-target {
+      background: red;
+      padding-top: 200px;
+    }
   </style>
 
   <!-- styles for this page
@@ -71,6 +76,11 @@
       <p>Set styles.</p>
     </div>
 
+    <button class="scroll-offset">Scroll to Offset</button>
+    <button class="scroll-node">Scroll to Node</button>
+    <button class="scroll-selector">Scroll to Selector</button>
+
+
     <button class="xhr" data-url="xhr/form.php?buh=a+_b">XHR</button>
     <button class="xhr" data-url="xhr/error.php">XHR Error</button>
 
@@ -94,6 +104,9 @@
     <div style="margin-top: 1000px;">
       <p>hi</p>
     </div>
+    <div class="scroll-target">
+      <p>hi</p>
+    </div>
   </div>
 </body>
 <!--
@@ -104,6 +117,18 @@
   <script src="build/rmr-util.bundle.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+      RMR.Node.get('.scroll-offset').addEventListener('click', function(e) {
+        RMR.Browser.scrollTo(500, 200);
+      });
+
+      RMR.Node.get('.scroll-selector').addEventListener('click', function(e) {
+        RMR.Browser.scrollTo('.scroll-target', 200);
+      });
+      RMR.Node.get('.scroll-node').addEventListener('click', function(e) {
+        RMR.Browser.scrollTo(RMR.Node.get('.scroll-target'), 200);
+      });
+
 
       window.Man({pre : true});
 
