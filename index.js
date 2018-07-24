@@ -258,7 +258,7 @@
 
    * @return Object
    */
-  merge = function(a, b) {
+  objectMerge = function(a, b) {
     const o = {};
     let i = null;
     for (i in a) {
@@ -569,6 +569,29 @@
     return a;
   },
 
+  /**
+   * Retrieve (potentially nested) value from object
+   *
+   * @param {Object} object - target object to be inspected
+   * @param {String} path - nested paths 
+   * @param {Mixed} fallback - value to return if path not found (default to `null`)
+   * @return {Mixed} - value found at path, or `null` if no such path exists
+   */
+  objectGet = function(object, path, fallback) {
+
+    const bits = path.split('.');
+    let target = object;
+
+    for (let i = 0; i < bits.length; i++) {
+      if (! target.hasOwnProperty(bits[i])) {
+        return fallback ? fallback : null;
+      }
+      target = target[bits[i]];
+    }
+
+    return target;
+  },
+
 
   /**
    * Generate an object containing keys/values corresponding to form elements
@@ -724,7 +747,7 @@
       params: null
     };
 
-    config = merge(defaults, config);
+    config = objectMerge(defaults, config);
 
     if (config.form) {
       config.form = getElement(config.form);
@@ -978,7 +1001,8 @@
     },
     Object: {
       keys: objectKeys,
-      merge: merge,
+      merge: objectMerge,
+      value: objectGet,
       fromForm: objectFromForm,
       queryString: queryString
     },

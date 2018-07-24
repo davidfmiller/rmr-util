@@ -15,12 +15,17 @@ describe('rmr-util', function() {
   it('RMR.Object', function object() {
     expect(RMR.Object.queryString({})).to.equal('');
 
-//    console.log(
-//      RMR.Object.merge(
-//    );
+    const obj = {
+      a: 1,
+      b: 2,
+      c: {
+        d: 3
+      }
+    };
 
-    // expect(RMR.Object.queryString({})).to.equal('');
-
+    expect(RMR.Object.value(obj, 'a')).to.equal(1);
+    expect(RMR.Object.value(obj, 'b')).to.equal(2);
+    expect(RMR.Object.value(obj, 'c.d')).to.equal(3);
   });
 
 
