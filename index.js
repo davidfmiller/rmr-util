@@ -573,7 +573,7 @@
    * Retrieve (potentially nested) value from object
    *
    * @param {Object} object - target object to be inspected
-   * @param {String} path - nested paths 
+   * @param {String} path - nested paths
    * @param {Mixed} fallback - value to return if path not found (default to `null`)
    * @return {Mixed} - value found at path, or `null` if no such path exists
    */
