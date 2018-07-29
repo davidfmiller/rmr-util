@@ -849,6 +849,7 @@
       escape: 27,
       enter: 13,
       space: 32,
+      digits: [ 49, 50, 51, 52, 53, 54, 55, 56, 57, 48  ], // treat 0 zero as the last ordinal
 
       /**
        * Determine if a keyboardEvent has a modifier key associated
