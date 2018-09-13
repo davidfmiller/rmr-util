@@ -179,7 +179,7 @@
   },
 
   /**
-   * Determine if we're in Safari
+   * Determine if we're in Firefox
    *
    * @return {Bool} `true` or `false`
    */
