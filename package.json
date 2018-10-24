@@ -1,7 +1,7 @@
 {
   "name": "rmr-util",
-  "version": "1.1.29",
-  "description": "JS for your browser",
+  "version": "1.1.30",
+  "description": "JS & CSS for your browser",
   "url": "https://davidfmiller.github.io/rmr-util/",
   "license": "ISC",
   "scripts": {

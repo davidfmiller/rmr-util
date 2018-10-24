@@ -5,6 +5,17 @@
  */
 
 
+/**
+
+ */
+@mixin rmr-dark {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+
+
 @mixin rmr-touch-device {
   @media (pointer: coarse) {
     @content;
