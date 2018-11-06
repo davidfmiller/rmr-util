@@ -121,6 +121,22 @@
   },
 
   /**
+   * Retrieve an element via query selector, or
+   *
+   * @param {Mixed} arg the element to retrieve, or null if no such element exists
+   * @return {Element} element corresponding to the selector (or null if none exists)
+   */
+  getElement = function(arg) {
+    if (typeof arg === 'string') {
+      return document.querySelector(arg);
+    } else if (arg instanceof HTMLElement) {
+      return arg;
+    }
+
+    return null;
+  },
+
+  /**
    * Determine if a string is a valid internet URL
    *
    * @param {String} str - the string to be tested
@@ -202,6 +218,35 @@
   },
 
   /**
+   * Retrieve an object containing browser/screen coordinates for a DOM element
+   *
+   * @param {Element} node the element whose coordinates should be retrieved
+   * @return {Object} An object containing { top : xx, left : xx, bottom: xx, right: xx, width: xx, height: xx }
+   */
+  getRect = function(node) {
+
+    node = getElement(node);
+    if (!node) {
+      return { top: 0, left: 0, right: 0, width: 0, height: 0 };
+    }
+
+    const
+    rect = node.getBoundingClientRect(),
+    ret = { top: rect.top, left: rect.left, bottom: rect.bottom, right: rect.right }; // create a new object that is not read-only
+
+    ret.top += window.pageYOffset;
+    ret.left += window.pageXOffset;
+
+    ret.bottom += window.pageYOffset;
+    ret.right += window.pageYOffset;
+
+    ret.width = rect.right - rect.left;
+    ret.height = rect.bottom - rect.top;
+
+    return ret;
+  },
+
+  /**
    * Scroll to an element
    *
    * @param {Mixed} y - vertical offset to scroll to, or selector/node references for the Element to scroll to
@@ -213,8 +258,8 @@
       duration = 200;
     }
 
-    if (typeof y == 'string' || y instanceof Element) {
-      y = RMR.Node.getRect(y).top;
+    if (typeof y === 'string' || y instanceof Element) {
+      y = getRect(y).top;
     }
 
     const
@@ -321,22 +366,6 @@
     return arr(array).filter(e => e !== item);
   },
 
-  /**
-   * Retrieve an element via query selector, or
-   *
-   * @param {Mixed} arg the element to retrieve, or null if no such element exists
-   * @return {Element} element corresponding to the selector (or null if none exists)
-   */
-  getElement = function(arg) {
-    if (typeof arg === 'string') {
-      return document.querySelector(arg);
-    } else if (arg instanceof HTMLElement) {
-      return arg;
-    }
-
-    return null;
-  },
-
 
   /**
    * Remove all children from a node
@@ -429,35 +458,6 @@
     '</svg>';
 
 //    return svg;
-  },
-
-  /**
-   * Retrieve an object containing browser/screen coordinates for a DOM element
-   *
-   * @param {Element} node the element whose coordinates should be retrieved
-   * @return {Object} An object containing { top : xx, left : xx, bottom: xx, right: xx, width: xx, height: xx }
-   */
-  getRect = function(node) {
-
-    node = getElement(node);
-    if (!node) {
-      return { top: 0, left: 0, right: 0, width: 0, height: 0 };
-    }
-
-    const
-    rect = node.getBoundingClientRect(),
-    ret = { top: rect.top, left: rect.left, bottom: rect.bottom, right: rect.right }; // create a new object that is not read-only
-
-    ret.top += window.pageYOffset;
-    ret.left += window.pageXOffset;
-
-    ret.bottom += window.pageYOffset;
-    ret.right += window.pageYOffset;
-
-    ret.width = rect.right - rect.left;
-    ret.height = rect.bottom - rect.top;
-
-    return ret;
   },
 
 
@@ -946,6 +946,12 @@
       }
     },
 
+    OS: {
+      isApple: function() {
+        const agent = window.navigator.userAgent;
+        return agent.match('iPhone;') || agent.match('iPad;') || agent.match('iPod;')  || agent.match('Mac OS X');
+      }
+    },
     Browser: {
       isTouch: isTouch,
       isSafari: isSafari,
