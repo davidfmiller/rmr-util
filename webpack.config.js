@@ -3,15 +3,14 @@ const
     path = require('path'),
     webpack = require('webpack');
 
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const extractCSS = new ExtractTextPlugin('[name].bundle.css');
-
 const config = {
   entry: './build.js',
   output: {
     path: path.resolve(__dirname, 'docs/build/'),
     filename: 'rmr-util.bundle.js'
   },
+  mode: 'production',
+//  mode: 'development',
   watch: true,
   plugins : [
     new webpack.optimize.UglifyJsPlugin({
@@ -20,13 +19,6 @@ const config = {
   ],
   module: {
     rules: [
-/*
-    { test: /\.scss$/, use: [
-      { loader: "style-loader" }, // creates style nodes from JS strings
-      { loader: "css-loader" }, // translates CSS into CommonJS
-      { loader: "sass-loader" } // compiles Sass to CSS
-    ]},
-*/
       {
         test: /\.js$/,
 //        include: path.resolve(__dirname, 'src'),
