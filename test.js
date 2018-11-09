@@ -29,6 +29,11 @@ describe('rmr-util', function() {
   });
 
 
+  it('RMR.Map', function map() {
+    expect(RMR.Map.formatLatitude(23.4233)).to.equal('N');
+    expect(RMR.Map.formatLongitude(-23.4233)).to.equal('W');
+  });
+
   it('RMR.Date', function date() {
     expect(RMR.Date.fromRFC3339('')).to.equal(null);
 
