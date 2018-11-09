@@ -189,7 +189,17 @@
 
     const dir = value <  0 ? 'S' : 'N'
 
-    return '' + dir;
+    let degrees = 0, minutes = 0, seconds = 0;
+
+    degrees = parseInt(value);
+    value = (value - degrees) * 60;
+
+    minutes = parseInt(value);
+    seconds = (value - minutes) * 60;
+    
+    if (seconds < 0) { seconds *= -1; }
+
+    return Math.abs(degrees) + 'º' + Math.abs(minutes) + '’' + seconds.toFixed(2) + '”' + dir;
   },
 
   /**
@@ -202,9 +212,17 @@
 
     let value = parseFloat(lon);
 
-    const dir = value <  0 ? 'W' : 'E'
+    const dir = value <  0 ? 'W' : 'E';
 
-    return '' + dir;
+    let degrees = 0, minutes = 0, seconds = 0;
+
+    degrees = parseInt(value);
+    value = (value - degrees) * 60;
+
+    minutes = parseInt(value);
+    seconds = (value - minutes) * 60;
+
+    return Math.abs(degrees) + 'º' + Math.abs(minutes) + '’' + Math.abs(seconds.toFixed(2)) + '”' + dir;
   },
   
 

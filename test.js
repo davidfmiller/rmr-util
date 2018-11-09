@@ -28,10 +28,16 @@ describe('rmr-util', function() {
     expect(RMR.Object.value(obj, 'c.d')).to.equal(3);
   });
 
+// https://maps.apple.com/?t=m&ll=33.677729,-116.302573&q=Palm%20Desert
+
+
+
+// -19 m,16ºC,33º40’39.8”N 116º18’9.3”W,15 m,0:04,66 bpm,7.2 km/h,19 W,18 rpm
+
 
   it('RMR.Map', function map() {
-    expect(RMR.Map.formatLatitude(23.4233)).to.equal('N');
-    expect(RMR.Map.formatLongitude(-23.4233)).to.equal('W');
+    expect(RMR.Map.formatLatitude(33.677729)).to.equal('33º40’39.82”N');
+    expect(RMR.Map.formatLongitude(-116.302573)).to.equal('116º18’9.26”W');
   });
 
   it('RMR.Date', function date() {
