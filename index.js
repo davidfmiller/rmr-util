@@ -180,14 +180,14 @@
   /**
     Format a latitude coordinate value into a human-friendly string
 
-    @param {Float} lat  value to be formatted 
-    @return {String}
+    @param {Float} lat  value to be formatted
+    @return {String} formatted latitude string
    */
   formatLatitude = function(lat) {
 
     let value = parseFloat(lat);
 
-    const dir = value <  0 ? 'S' : 'N'
+    const dir = value <  0 ? 'S' : 'N';
 
     let degrees = 0, minutes = 0, seconds = 0;
 
@@ -196,7 +196,7 @@
 
     minutes = parseInt(value);
     seconds = (value - minutes) * 60;
-    
+
     if (seconds < 0) { seconds *= -1; }
 
     return Math.abs(degrees) + 'º' + Math.abs(minutes) + '’' + seconds.toFixed(2) + '”' + dir;
@@ -205,8 +205,8 @@
   /**
     Format a longitude coordinate value into a human-friendly string
 
-    @param {Float} lat  value to be formatted
-    @return {String}
+    @param {Float} lon  value to be formatted
+    @return {String} formatted longitude string
    */
   formatLongitude = function(lon) {
 
@@ -224,7 +224,7 @@
 
     return Math.abs(degrees) + 'º' + Math.abs(minutes) + '’' + Math.abs(seconds.toFixed(2)) + '”' + dir;
   },
-  
+
 
   /**
    * Determine if a node matches a provided selector
@@ -1099,7 +1099,7 @@
     XHR: {
       request: xhrRequest
     },
-    Map : {
+    Map: {
       formatLatitude: formatLatitude,
       formatLongitude: formatLongitude
     },
@@ -1150,14 +1150,17 @@
       } else {
         const
         body = document.body,
-        cls = 'rmr-hover';
+        hover = 'rmr-hover',
+        out = 'rmr-nohover';
 
         body.addEventListener('mouseenter', () => {
-          body.classList.add(cls);
+          body.classList.add(hover);
+          body.classList.remove(out);
         });
 
         body.addEventListener('mouseleave', () => {
-          body.classList.remove(cls);
+          body.classList.remove(hover);
+          body.classList.add(out);
         });
       }
     });
