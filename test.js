@@ -41,9 +41,9 @@ describe('rmr-util', function() {
 
     const d = RMR.Date.fromRFC3339('2015-01-25T00:00:00-0700');
     expect(d).to.not.equal(null);
-    expect(d.getDate()).to.not.equal(25);
-    expect(d.getMonth()).to.not.equal(1);
-    expect(d.getYear()).to.not.equal(2015);
+    expect(d.getDate()).to.equal(25);
+    expect(d.getMonth()).to.equal(0);
+    expect(d.getYear()).to.equal(115);
 
     expect(RMR.Date.toRFC3339(d)).to.equal('2015-01-25T07:00:00Z');
   });
@@ -51,7 +51,7 @@ describe('rmr-util', function() {
 
   it('RMR.Array', function() {
 
-    const arr = [
+    let arr = [
       { id: 'a' },
       { id: 'b' },
       { id: 'c' },
@@ -73,6 +73,25 @@ describe('rmr-util', function() {
     expect(RMR.Array.find(arr, function(obj) {
       return obj.id === 'd';
     })).to.equal(-1);
+
+    let
+      list = ['a', 'b', 'c', 'd'],
+      reordered = RMR.Array.reorder(list, function(obj) {
+        return obj == 'b';
+      });
+
+    expect(reordered[0]).to.equal('b');
+    expect(reordered[1]).to.equal('c');
+    expect(reordered[2]).to.equal('d');
+    expect(reordered[3]).to.equal('a');
+
+    list = ['a', 'b', 'c'];
+    reordered = RMR.Array.reorder(list, 'd');
+    expect(reordered[0]).to.equal('a');
+    expect(reordered[1]).to.equal('b');
+    expect(reordered[2]).to.equal('c');
+    
+    
   });
 
   it('RMR.String', function fromPath() {

@@ -197,7 +197,9 @@
     minutes = parseInt(value);
     seconds = (value - minutes) * 60;
 
-    if (seconds < 0) { seconds *= -1; }
+    if (seconds < 0) {
+      seconds *= -1;
+    }
 
     return Math.abs(degrees) + 'º' + Math.abs(minutes) + '’' + seconds.toFixed(2) + '”' + dir;
   },
@@ -443,6 +445,78 @@
    */
   arrayRemove = function(array, item) {
     return arr(array).filter(e => e !== item);
+  },
+
+  /**
+   * Return the index of an item in an array
+   *
+   * @param {Array} list that should be searched
+   * @param {Function} func comparator function that takes on argument
+   * @return {Integer} index of the item in the array, or -1 if it doesn't exist
+   */
+  arrayFind = function(list, func) {
+
+    const array = arr(list);
+
+    if (typeof func !== 'function') {
+
+      const
+      target = func,
+      lookup = function(param) {
+
+        if (typeof param === 'object' && param.hasOwnProperty('id')) {
+          if (typeof target === 'object' && target.hasOwnProperty('id')) {
+            return param.id === target.id;
+          }
+          return param.id === target;
+        }
+
+        return param === target;
+       };
+      func = lookup;
+    }
+    for (const i in array) {
+      if (! array.hasOwnProperty(i)) {
+        continue;
+      }
+
+      if (array[i] === func || func(array[i])) {
+        return parseInt(i, 10);
+        break;
+      }
+    }
+    return -1;
+  },
+
+  /**
+   * Shift the objects within an array so that a given item is first
+   *
+   * @param {Array} array containing object to be removed
+   * @param {Any} item to be made the first
+   * @return {Array} array for chaining
+   */
+  arrayReorder = function(array, item) {
+
+    const
+      list = arr(array),
+      reordered = [];
+
+    const index = arrayFind(list, item);
+    if (index === -1) {
+      return list;
+    }
+
+    reordered.push(list[index]);
+
+    for (let i = index + 1; i < list.length; i++) {
+      reordered.push(array[i]);
+    }
+
+    for (let i = 0; i < index; i++) {
+      reordered.push(array[i]);
+    }
+
+    return reordered;
   },
 
 
@@ -1047,47 +1121,8 @@
       coerce: arr,
       last: lastValue,
       remove: arrayRemove,
-
-      /**
-       * Return the index of an item in an array
-       *
-       * @param {Array} list that should be searched
-       * @param {Function} func comparator function that takes on argument
-       * @return {Integer} index of the item in the array, or -1 if it doesn't exist
-       */
-      find: function(list, func) {
-
-        const array = arr(list);
-
-        if (typeof func !== 'function') {
-
-          const
-          target = func,
-          lookup = function(param) {
-
-            if (typeof param === 'object' && param.hasOwnProperty('id')) {
-              if (typeof target === 'object' && target.hasOwnProperty('id')) {
-                return param.id === target.id;
-              }
-              return param.id === target;
-            }
-
-            return param === target;
-           };
-          func = lookup;
-        }
-
-        for (const i in array) {
-          if (array.hasOwnProperty(i)) {
-            if (array[i] === func || func(array[i])) {
-              return parseInt(i, 10);
-              break;
-            }
-          }
-        }
-
-        return -1;
-      }
+      find: arrayFind,
+      reorder: arrayReorder
     },
     Object: {
       keys: objectKeys,
