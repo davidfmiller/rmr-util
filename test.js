@@ -51,7 +51,7 @@ describe('rmr-util', function() {
 
   it('RMR.Array', function() {
 
-    let arr = [
+    const arr = [
       { id: 'a' },
       { id: 'b' },
       { id: 'c' },
@@ -77,7 +77,7 @@ describe('rmr-util', function() {
     let
       list = ['a', 'b', 'c', 'd'],
       reordered = RMR.Array.reorder(list, function(obj) {
-        return obj == 'b';
+        return obj === 'b';
       });
 
     expect(reordered[0]).to.equal('b');
@@ -90,8 +90,6 @@ describe('rmr-util', function() {
     expect(reordered[0]).to.equal('a');
     expect(reordered[1]).to.equal('b');
     expect(reordered[2]).to.equal('c');
-    
-    
   });
 
   it('RMR.String', function fromPath() {
