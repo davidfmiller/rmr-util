@@ -1039,11 +1039,13 @@
       /**
        * Convert a Date instance to RFC 3339 format, ex: `2019-01-17T17:55:48Z`
        *
-       * @param {Date} date to be formatted
+       * @param {Date} date to be formatted, optional
        * @return {String} Date in RFC 3339 format
        * @see https://tools.ietf.org/html/rfc3339
        */
       toRFC3339: function(date) {
+
+        if (! date) { date = new Date(); }
 
         const pad = function(n) {
           return n < 10 ? '0' + n : n;
