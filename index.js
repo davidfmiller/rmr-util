@@ -1037,7 +1037,7 @@
     Date: {
 
       /**
-       * Convert a Date instance to RFC 3339 format
+       * Convert a Date instance to RFC 3339 format, ex: `2019-01-17T17:55:48Z`
        *
        * @param {Date} date to be formatted
        * @return {String} Date in RFC 3339 format
