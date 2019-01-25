@@ -935,7 +935,7 @@
     }
 
     if (config.method.toUpperCase() === 'GET') {
-      url = Object.keys(config.params).count > 0 ? (url + '?' + queryString(config.params)) : url;
+      url = Object.keys(config.params).length > 0 ? (url + '?' + queryString(config.params)) : url;
     } else { // post
       params = queryString(config.params);
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
