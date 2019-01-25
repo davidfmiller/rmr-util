@@ -901,7 +901,7 @@
       url: '/',
       headers: {},
       method: 'get',
-      params: null
+      params: {}
     };
 
     config = objectMerge(defaults, config);
