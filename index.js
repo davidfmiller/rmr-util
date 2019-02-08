@@ -544,11 +544,20 @@
    * Retrieve an element via query selector
    *
    * @param {Mixed} arg selector, or an array of elements to attach
+   * @param {mixed,optional} scope the parent node
    * @return {[Element]} array of elements
    */
-  getElements = function(arg) {
+  getElements = function(arg, scope) {
+
+    if (! scope) {
+      scope = document;
+    }
+    else {
+      scope = getElement(scope);
+    }
+
     if (typeof arg === 'string') {
-      return arr(document.querySelectorAll(arg));
+      return arr(scope.querySelectorAll(arg));
     }
 
     return arr(arg);
