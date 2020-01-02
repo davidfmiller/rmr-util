@@ -729,6 +729,10 @@
     return target;
   },
 
+  objectHas = function(obj, key) {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+  },
+
 
   /**
    * Generate an object containing keys/values corresponding to form elements
@@ -1111,7 +1115,8 @@
       merge: objectMerge,
       value: objectGet,
       fromForm: objectFromForm,
-      queryString: queryString
+      queryString: queryString,
+      has: objectHas
     },
     XHR: {
       request: xhrRequest

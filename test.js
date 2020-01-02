@@ -26,6 +26,9 @@ describe('rmr-util', function() {
     expect(RMR.Object.value(obj, 'a')).to.equal(1);
     expect(RMR.Object.value(obj, 'b')).to.equal(2);
     expect(RMR.Object.value(obj, 'c.d')).to.equal(3);
+
+    expect(RMR.Object.has(obj, 'a')).to.equal(true);
+    expect(RMR.Object.has(obj, 'z')).to.equal(false);
   });
 
 // https://maps.apple.com/?t=m&ll=33.677729,-116.302573&q=Palm%20Desert
