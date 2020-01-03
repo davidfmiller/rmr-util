@@ -14,7 +14,11 @@
   }
 }
 
-
+@mixin rmr-p3 {
+  @supports (color: color(display-p3 0 0 0 / 1)) {
+    @content;
+  }
+}
 
 @mixin rmr-touch-device {
   @media (pointer: coarse) {
