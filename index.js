@@ -492,19 +492,28 @@
 
 
   /**
-   * Remove all children from a node
+   * Remove all children from a node (optionally matching a selector)
    *
    * @param {Mixed} arg - node or selector whose children should be removed
+   * @param {String,optional} selector - query selector that children must match in order to be removed
    * @return {HTMLElement} - for chaining
    */
-  pruneElement = function(arg) {
+  pruneElement = function(arg, selector) {
 
     const node = getElement(arg);
     if (! node) {
       return null;
     }
-    while (node.firstChild) {
-      node.removeChild(node.firstChild);
+    if (selector) {
+      let n = arr(arg.querySelectorAll(selector));
+      for (let i = 0; i < n.length; i++) {
+        RMR.Node.remove(n[i]);
+      }
+    }
+    else {
+      while (node.firstChild) {
+        node.removeChild(node.firstChild);
+      }
     }
 
     return node;
@@ -515,7 +524,7 @@
    * Retrieve an element via query selector
    *
    * @param {Mixed} arg selector, or an array of elements to attach
-   * @param {mixed,optional} scope the parent node
+   * @param {Mixed,optional} scope the parent node
    * @return {[Element]} array of elements
    */
   getElements = function(arg, scope) {
