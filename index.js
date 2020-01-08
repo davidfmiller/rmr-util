@@ -507,7 +507,7 @@
     if (selector) {
       let n = arr(arg.querySelectorAll(selector));
       for (let i = 0; i < n.length; i++) {
-        RMR.Node.remove(n[i]);
+        removeNode(n[i]);
       }
     }
     else {
@@ -1146,7 +1146,7 @@
       listen: addListener,
 
       // TODO: deprecate `make`
-      make: makeElement,
+//      make: makeElement,
       create: makeElement,
       getRect: getRect,
       setStyles: setStyles
