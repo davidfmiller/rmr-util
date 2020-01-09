@@ -993,10 +993,15 @@
           console.error('Node doesn\'t exist RMR.Tools.externalLinks', root);
           return;
         }
-        const links = parent.querySelectorAll('a');
+
+        const
+          links = parent.querySelectorAll('a'),
+          location = document.location;
+
         for (let i = 0; i < links.length; i++) {
           const a = links[i];
-          if (a.href.substring(0,4) == 'http') {
+//          console.log(a.host, location.host)
+          if (a.host !== location.host) {
             a.classList.add('rmr-external');
             a.setAttribute('target', '_blank');
           }
