@@ -986,6 +986,24 @@
 
     Base64: Base64,
 
+    Tools: {
+      externalLinks: function(root) {
+        let parent = (root ? getElement(root) : document.body);
+        if (! parent) {
+          console.error('Node doesn\'t exist RMR.Tools.externalLinks', root);
+          return;
+        }
+        const links = parent.querySelectorAll('a');
+        for (let i = 0; i < links.length; i++) {
+          const a = links[i];
+          if (a.href.substring(0,4) == 'http') {
+            a.classList.add('rmr-external');
+            a.setAttribute('target', '_blank');
+          }
+        }
+      }
+    },
+
     // document.body.addEventListener('keyup', function(e){ console.log(e.keyCode); });
     Keyboard: {
       next: 39,
@@ -1135,7 +1153,6 @@
       formatLongitude: formatLongitude
     },
     Node: {
-//      data: dataFromNode,
       ancestor: ancestor,
       matches: selectorMatches,
       remove: removeNode,
@@ -1144,9 +1161,6 @@
       getAll: getElements,
       prune: pruneElement,
       listen: addListener,
-
-      // TODO: deprecate `make`
-//      make: makeElement,
       create: makeElement,
       getRect: getRect,
       setStyles: setStyles
