@@ -213,7 +213,7 @@
             method: 'get',
             params: {}
           }, function(xhr) {
-            var div = RMR.Node.make('li');
+            var div = RMR.Node.create('li');
             div.innerHTML = xhr.responseText;
             log.appendChild(div);
           });
@@ -228,7 +228,7 @@
           RMR.XHR.request({
             form: e.target.form,
           }, function(xhr) {
-            var div = RMR.Node.make('li');
+            var div = RMR.Node.create('li');
             div.innerHTML = xhr.responseText;
             log.appendChild(div);
           });

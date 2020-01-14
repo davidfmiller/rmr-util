@@ -1,4 +1,4 @@
-/* global require, module, console, Promise, HTMLElement */
+/* global */
 
 (() => {
 
@@ -363,7 +363,7 @@
     const o = {};
     let i = null;
     for (i in a) {
-      if (a.hasOwnProperty(i)) {
+      if (objectHas(a, i)) {
         o[i] = a[i];
       }
     }
@@ -371,7 +371,7 @@
       return o;
     }
     for (i in b) {
-      if (b.hasOwnProperty(i)) {
+      if (objectHas(b, i)) {
         o[i] = b[i];
       }
     }
@@ -398,7 +398,7 @@
     }
 
     for (i = 0; i < list.length; i++) {
-      if (list.hasOwnProperty(i)) {
+      if (objectHas(list, i)) {
         ret.push(list[i]);
       }
     }
@@ -435,8 +435,8 @@
       target = func,
       lookup = function(param) {
 
-        if (typeof param === 'object' && param.hasOwnProperty('id')) {
-          if (typeof target === 'object' && target.hasOwnProperty('id')) {
+        if (typeof param === 'object' && objectHas(param, 'id')) {
+          if (typeof target === 'object' && objectHas(target, 'id')) {
             return param.id === target.id;
           }
           return param.id === target;
@@ -447,13 +447,12 @@
       func = lookup;
     }
     for (const i in array) {
-      if (! array.hasOwnProperty(i)) {
+      if (! objectHas(array, i)) {
         continue;
       }
 
       if (array[i] === func || func(array[i])) {
         return parseInt(i, 10);
-        break;
       }
     }
     return -1;
@@ -556,7 +555,7 @@
      const n = document.createElement(type);
 
      for (const i in attrs) {
-       if (attrs.hasOwnProperty(i) && attrs[i]) {
+       if (objectHas(attrs, i) && attrs[i]) {
          n.setAttribute(i, attrs[i]);
        }
      }
@@ -628,26 +627,15 @@
     let i, lang;
 
     for (i in navigator.languages) {
-      if (! navigator.languages.hasOwnProperty(i)) {
+      if (! objectHas(navigator.languages, i)) {
         continue;
       }
       lang = navigator.languages[i].toLowerCase();
-      if (lookup.hasOwnProperty(lang) && lookup[lang].hasOwnProperty(key)) {
+      if (objectHas(lookup, lang) && objectHas(lookup[lang], key)) {
         return lookup[lang][key];
       }
     }
-
-    for (i in navigator.languages) {
-      if (! navigator.languages.hasOwnProperty(i)) {
-        continue;
-      }
-      lang = navigator.languages[i].split('-')[0].toLowerCase();
-      if (lookup.hasOwnProperty(lang) && lookup[lang].hasOwnProperty(key)) {
-        return lookup[lang][key];
-      }
-    }
-
-//    console.warn('No localization for ' + key);
+    console.warn('No localization for ' + key);
     return key;
   },
 
@@ -666,13 +654,37 @@
     }
 
     for (const i in styles) {
-      if (styles.hasOwnProperty(i) && styles[i]) {
+      if (objectHas(styles, i) && styles[i]) {
         node.style[i] = styles[i];
       }
     }
 
     return node;
   },
+
+  /**
+   * Apply attributes to a node
+   *
+   * @param {HTMLElement} node that should have styles applied
+   * @param {Object} styles key/value pairs for styles and values
+   * @return {Element} node
+   */
+  setAttributes = function(node, attrs) {
+
+    node = getElement(node);
+    if (! node) {
+      return false;
+    }
+
+    for (const i in attrs) {
+      if (objectHas(attrs, i) && attrs[i]) {
+        node.setAttribute([i], attrs[i]);
+      }
+    }
+
+    return node;
+  },
+
 
   /**
    * Build a query string from an object
@@ -707,7 +719,7 @@
 
     const a = [];
     for (const i in obj) {
-      if (obj.hasOwnProperty(i)) {
+      if (objectHas(obj, i)) {
         a.push(i);
       }
     }
@@ -729,7 +741,7 @@
     let target = object;
 
     for (let i = 0; i < bits.length; i++) {
-      if (! target.hasOwnProperty(bits[i])) {
+      if (! objectHas(target, bits[i])) {
         return fallback ? fallback : null;
       }
       target = target[bits[i]];
@@ -768,7 +780,7 @@
     params = {};
 
     for (const i in inputs) {
-      if (! inputs.hasOwnProperty(i)) {
+      if (! objectHas(inputs, i)) {
         continue;
       }
       const
@@ -803,7 +815,7 @@
     let i = 0;
 
     for (i in nodes) {
-      if (nodes.hasOwnProperty(i)) {
+      if (objectHas(nodes, i)) {
         nodes[i].addEventListener(eventName, func);
       }
     }
@@ -836,9 +848,9 @@
 
     while ((parent = parent.parentNode) !== null) {
 
-      if (! parent instanceof Element) {
-        return null;
-      }
+//       if (! parent instanceof Element) {
+//         return null;
+//       }
 
       if (selectorMatches(parent, ancestor)) {
         return parent;
@@ -939,7 +951,7 @@
     xhttp.open(config.method, url, true);
 
     for (const h in config.headers) {
-      if (config.headers.hasOwnProperty(h)) {
+      if (objectHas(config.headers, h)) {
         xhttp.setRequestHeader(h, config.headers[h]);
       }
     }
@@ -1082,7 +1094,7 @@
         }
 
         return new Date(dString);
-
+/*
         const ret = new Date();
 
         let utcOffset, offsetSplitChar;
@@ -1114,6 +1126,7 @@
 
         ret.setTime(Date.UTC(date[0], date[1] - 1, date[2], time[0], time[1], time[2]) + (utcOffset * offsetMultiplier));
         return ret;
+*/
       }
     },
 
@@ -1168,7 +1181,8 @@
       listen: addListener,
       create: makeElement,
       getRect: getRect,
-      setStyles: setStyles
+      setStyles: setStyles,
+      setAttributes: setAttributes
     }
   };
 
