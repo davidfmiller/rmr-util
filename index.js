@@ -678,7 +678,11 @@
 
     for (const i in attrs) {
       if (objectHas(attrs, i) && attrs[i]) {
-        node.setAttribute([i], attrs[i]);
+        if (attrs[i]) {
+          node.setAttribute([i], attrs[i]);
+        } else {
+          node.removeAttribute([i], attrs[i]);
+        }
       }
     }
 
