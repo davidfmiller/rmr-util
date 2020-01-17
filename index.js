@@ -306,6 +306,22 @@
    */
   scrollTo = function(y, duration) {
 
+    const
+//     linear = function(fraction) {
+//       return fraction;
+//     },
+    quad = function(timeFraction) {
+      return Math.pow(timeFraction, 5)
+    },
+    timing = quad;
+//     circ = func(timeFraction) {
+//       return 1 - Math.sin(Math.acos(timeFraction));
+//     };
+
+//    if (! timing) {
+     
+//    }
+
     if (arguments.length === 1) {
       duration = 200;
     }
@@ -318,20 +334,16 @@
     startingY = window.pageYOffset,
     diff = y - startingY;
 
-    let start;
+    let start = performance.now();
 
     // Bootstrap our animation - it will get called right before next frame shall be rendered.
     window.requestAnimationFrame(function step(timestamp) {
-
-      if (!start) {
-        start = timestamp;
-      }
 
       const
       time = timestamp - start,
       percent = Math.min(time / duration, 1);
 
-      window.scrollTo(0, startingY + diff * percent);
+      window.scrollTo(0, startingY + diff * timing(percent));
 
       // Proceed with animation as long as we wanted it to.
       if (time < duration) {
