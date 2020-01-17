@@ -1204,6 +1204,7 @@
 
   if (typeof window !== 'undefined') {
     window.document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.remove('rmr-nojs');
       document.body.classList.add('rmr-js');
 
       if (isTouch()) {
