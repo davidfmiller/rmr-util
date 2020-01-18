@@ -137,6 +137,16 @@
   },
 
   /**
+   * Determine if a variable/object is an HTML element
+   *
+   * @param {Mixed}
+   * @return {Bool}
+   */
+  isAnElement = function(arg) {
+    return arg instanceof HTMLElement;
+  },
+
+  /**
    * Determine if a string is a valid internet URL
    *
    * @param {String} str - the string to be tested
@@ -1187,6 +1197,7 @@
       formatLongitude: formatLongitude
     },
     Node: {
+      isa: isAnElement,
       ancestor: ancestor,
       matches: selectorMatches,
       remove: removeNode,
