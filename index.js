@@ -1214,6 +1214,11 @@
   };
 
   if (typeof window !== 'undefined') {
+
+    window.addEventListener('load', () => {
+      document.body.classList.add('rmr-load');
+    });
+
     window.document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('rmr-nojs');
       document.body.classList.add('rmr-js');
