@@ -1188,12 +1188,23 @@
     Notify: {
       post: (name, obj) => {
 
-        if (! subs.hasOwnProperty(name)) {
+        const special = '*';
+
+        if (objectHas(subs, special)) {
+          for (const i in subs[special]) {
+            if (! objectHas(subs[special], i)) {
+              continue;
+            }
+            subs[special][i](obj);
+          }
+        }
+
+        if (! objectHas(subs, name)) {
           return;
         }
 
         for (const i in subs[name]) {
-          if (! subs[name].hasOwnProperty(i)) {
+          if (! objectHas(subs[name], i)) {
             continue;
           }
           subs[name][i](obj);
