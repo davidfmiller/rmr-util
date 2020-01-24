@@ -1019,6 +1019,10 @@
     return null;
   };
 
+  const subs = {
+  
+  };
+
 
   module.exports = {
 
@@ -1180,6 +1184,27 @@
       remove: arrayRemove,
       find: arrayFind,
       reorder: arrayReorder
+    },
+    Notify: {
+      post: (name, obj) => {
+
+        if (! subs.hasOwnProperty(name)) {
+          return;
+        }
+
+        for (const i in subs[name]) {
+          if (! subs[name].hasOwnProperty(i)) {
+            continue;
+          }
+          subs[name][i](obj);
+        }
+      },
+      subscribe: (name, f) => {
+        if (! subs.hasOwnProperty(name)) {
+          subs[name] = [];
+        }
+        subs[name].push(f);
+      }
     },
     Object: {
       keys: objectKeys,
