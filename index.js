@@ -1042,6 +1042,9 @@
 
         for (let i = 0; i < links.length; i++) {
           const a = links[i];
+          if (a.protocol === 'mailto:') {
+            continue;
+          }
 //          console.log(a.host, location.host)
           if (a.host !== location.host) {
             a.classList.add('rmr-external');
