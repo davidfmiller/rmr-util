@@ -78,8 +78,9 @@
 
     <div class="overflow">
       <div style="overflow: auto; height: 100px; background: green;">
-        <p style="margin-top: 1000px; background: red;">p</p>
-      </div><button>Scroll</button>
+        <article style="height: 1000px;"></article>
+        <p style="background: red;">p</p>
+      </div><button class="offset">Offset</button><button class="node">Node</button>
     </div>
 
     <ul>
@@ -140,13 +141,17 @@
         RMR.Browser.scrollTo(RMR.Node.get('.scroll-target'), 200);
       });
 
-      RMR.Node.get('div.overflow button').addEventListener('click', function(e) {
-        e.preventDefault();
+      RMR.Node.get('div.overflow button.offset').addEventListener('click', function(e) {
         const div = RMR.Node.ancestor(e.target, 'div').querySelector(':scope > div');
-
-        RMR.Node.scrollTo(div, div.scrollTop + 100, 0.2);
-
+        RMR.Node.scrollTo(div, div.scrollTop + 100);
       });
+
+      RMR.Node.get('div.overflow button.node').addEventListener('click', function(e) {
+
+        const div = RMR.Node.ancestor(e.target, 'div').querySelector(':scope > div');
+        RMR.Node.scrollTo(div, 'p');
+      });
+
 
       window.Man({pre : true});
 

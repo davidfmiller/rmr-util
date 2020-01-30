@@ -4,6 +4,8 @@
 
   'use strict';
 
+  function easeInOutQuad(t) { return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t };
+
   /**
    * rmr-util
    *
@@ -126,9 +128,9 @@
    * @param {Mixed} arg the element to retrieve, or null if no such element exists
    * @return {Element} element corresponding to the selector (or null if none exists)
    */
-  getElement = function(arg) {
+  getElement = function(arg, parent) {
     if (typeof arg === 'string') {
-      return document.querySelector(arg);
+      return (parent ? getElement(parent) : document).querySelector(arg);
     } else if (arg instanceof HTMLElement) {
       return arg;
     }
@@ -317,21 +319,7 @@
   scrollTo = function(y, duration) {
 
     const
-//     linear = function(fraction) {
-//       return fraction;
-//     },
-    quad = function(timeFraction) {
-      return Math.pow(timeFraction, 5)
-    },
-    timing = quad;
-//     circ = func(timeFraction) {
-//       return 1 - Math.sin(Math.acos(timeFraction));
-//     };
-
-//    if (! timing) {
-     
-//    }
-
+    timing = easeInOutQuad;
     if (arguments.length === 1) {
       duration = 200;
     }
@@ -365,8 +353,17 @@
   scrollNodeTo = function(element, to, duration, onDone) {
 
     element = getElement(element);
+    const node = getElement(to, element);
+    if (node) {
+      to = relativePosition(node).top;
+    }
+    else {
+      to = parseInt(to, 10);
+    }
+  console.log(to);
+
     if (! duration) {
-      duration = 1;
+      duration = 200;
     }
 
     var start = element.scrollTop,
@@ -376,16 +373,14 @@
 
 //console.log('scrolling to', element, change);
 
-    function easeInOutQuad(t){ return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t };
+    
 
     function animateScroll() {
       now = performance.now();
-      elapsed = (now - startTime) / 1000;
+      elapsed = now - startTime;
       t = (elapsed / duration);
 
       element.scrollTop = start + change * easeInOutQuad(t);
-      console.log(element.scrollTop);
-
       if (t < 1) {
         window.requestAnimationFrame(animateScroll);
       }
@@ -409,10 +404,10 @@
         cPos = node.getBoundingClientRect(), // target pos
         pos = {};
 
-    pos.top    = cPos.top - pPos.top + elm.parentNode.scrollTop,
-    pos.right  = cPos.right - pPos.right,
+    pos.top = cPos.top - pPos.top + node.parentNode.scrollTop,
+    pos.right = cPos.right - pPos.right,
     pos.bottom = cPos.bottom - pPos.bottom,
-    pos.left   = cPos.left - pPos.left;
+    pos.left = cPos.left - pPos.left;
 
     return pos;
   },
@@ -1284,6 +1279,9 @@
     },
     XHR: {
       request: xhrRequest
+    },
+    Timing: {
+      easeInOut: easeInOutQuad,
     },
     Map: {
       formatLatitude: formatLatitude,
