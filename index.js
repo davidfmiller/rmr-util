@@ -130,7 +130,14 @@
    */
   getElement = function(arg, parent) {
     if (typeof arg === 'string') {
-      return (parent ? getElement(parent) : document).querySelector(arg);
+
+      const root = (parent ? getElement(parent) : document);
+      if (! root) {
+        console.error('Invalid root for selector `' + arg + '`', parent);
+        return null;
+      }
+
+      return root.querySelector(arg);
     } else if (arg instanceof HTMLElement) {
       return arg;
     }
