@@ -1231,11 +1231,17 @@
       scrollTo: scrollTo,
       opensData: opensData,
       breakPoints: {
-        xs: 0,
-        sm: 576,
-        md: 768,
-        lg: 992,
-        xl: 1200
+        get : function(w) {
+          const arg = parseInt(w ? w : window.innerWidth);
+          return 'xl';
+        },
+        list: {
+          xs: 0,
+          sm: 576,
+          md: 768,
+          lg: 992,
+          xl: 1200
+        }
       }
     },
     String: {
