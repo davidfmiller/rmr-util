@@ -1229,7 +1229,7 @@
       isSafari: isSafari,
       isFirefox: isFirefox,
       scrollTo: scrollTo,
-      opensData: opensData,
+      opensData: opensData/*,
       breakPoints: {
         get : function(w) {
           const arg = parseInt(w ? w : window.innerWidth);
@@ -1242,7 +1242,7 @@
           lg: 992,
           xl: 1200
         }
-      }
+      }*/
     },
     String: {
       isURL: isURL,
