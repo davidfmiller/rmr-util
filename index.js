@@ -362,6 +362,60 @@
     });
   },
 
+  scrollNodeTo = function(element, to, duration, onDone) {
+
+    element = getElement(element);
+    if (! duration) {
+      duration = 1;
+    }
+
+    var start = element.scrollTop,
+        change = to - start,
+        startTime = performance.now(),
+        val, now, elapsed, t;
+
+//console.log('scrolling to', element, change);
+
+    function easeInOutQuad(t){ return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t };
+
+    function animateScroll() {
+      now = performance.now();
+      elapsed = (now - startTime) / 1000;
+      t = (elapsed / duration);
+
+      element.scrollTop = start + change * easeInOutQuad(t);
+      console.log(element.scrollTop);
+
+      if (t < 1) {
+        window.requestAnimationFrame(animateScroll);
+      }
+      else {
+        onDone && onDone();
+      }
+    };
+
+    animateScroll();
+  },
+  
+  /**
+   *
+   *
+   */
+  relativePosition = function(node) {
+
+    node = getElement(node);
+
+    const pPos = node.parentNode.getBoundingClientRect(), // parent pos
+        cPos = node.getBoundingClientRect(), // target pos
+        pos = {};
+
+    pos.top    = cPos.top - pPos.top + elm.parentNode.scrollTop,
+    pos.right  = cPos.right - pPos.right,
+    pos.bottom = cPos.bottom - pPos.bottom,
+    pos.left   = cPos.left - pPos.left;
+
+    return pos;
+  },
 
   /*
    * Generate a unique string suitable for id attributes
@@ -1248,7 +1302,9 @@
       create: makeElement,
       getRect: getRect,
       setStyles: setStyles,
-      setAttributes: setAttributes
+      setAttributes: setAttributes,
+      scrollTo: scrollNodeTo,
+      relaivePosition: relativePosition
     }
   };
 
