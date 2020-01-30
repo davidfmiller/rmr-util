@@ -360,7 +360,6 @@
     else {
       to = parseInt(to, 10);
     }
-  console.log(to);
 
     if (! duration) {
       duration = 200;
