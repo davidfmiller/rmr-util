@@ -378,9 +378,6 @@
         val, now, elapsed, t;
 
 //console.log('scrolling to', element, change);
-
-    
-
     function animateScroll() {
       now = performance.now();
       elapsed = now - startTime;
@@ -391,6 +388,7 @@
         window.requestAnimationFrame(animateScroll);
       }
       else {
+        element.scrollTop = to;
         onDone && onDone();
       }
     };
