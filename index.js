@@ -377,7 +377,6 @@
         startTime = performance.now(),
         now, elapsed, t;
 
-//console.log('scrolling to', element, change);
     function animateScroll() {
       now = performance.now();
       elapsed = now - startTime;
@@ -1224,6 +1223,7 @@
     },
     Browser: {
       isTouch: isTouch,
+      isDark: () => { return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; },
       isSafari: isSafari,
       isFirefox: isFirefox,
       scrollTo: scrollTo,
