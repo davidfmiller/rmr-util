@@ -4,7 +4,7 @@
 
   'use strict';
 
-  function easeInOutQuad(t) { return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t };
+  function easeInOutQuad(t) { return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t }
 
   /**
    * rmr-util
@@ -372,10 +372,10 @@
       duration = 200;
     }
 
-    var start = element.scrollTop,
+    let start = element.scrollTop,
         change = to - start,
         startTime = performance.now(),
-        val, now, elapsed, t;
+        now, elapsed, t;
 
 //console.log('scrolling to', element, change);
     function animateScroll() {
@@ -391,7 +391,7 @@
         element.scrollTop = to;
         onDone && onDone();
       }
-    };
+    }
 
     animateScroll();
   },
@@ -1280,7 +1280,7 @@
         }
       },
       subscribe: (name, f) => {
-        if (! subs.hasOwnProperty(name)) {
+        if (! objectHas(subs, name)) {
           subs[name] = [];
         }
         subs[name].push(f);
