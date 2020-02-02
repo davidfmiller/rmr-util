@@ -4,7 +4,30 @@
 
   'use strict';
 
-  function easeInOutQuad(t) { return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t }
+  const
+  breakpoints = [
+    {
+      name: 'xs',
+      value: 0
+    },
+    {
+      name: 'sm',
+      value: 576
+    },
+    {
+      name: 'md',
+      value: 768
+    },
+    {
+      name: 'lg',
+      value: 992
+    },
+    {
+      name: 'xl',
+      value: 1200
+    }
+  ],
+  easeInOutQuad = function(t) { return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t };
 
   /**
    * rmr-util
@@ -1227,20 +1250,43 @@
       isSafari: isSafari,
       isFirefox: isFirefox,
       scrollTo: scrollTo,
-      opensData: opensData/*,
-      breakPoints: {
-        get : function(w) {
-          const arg = parseInt(w ? w : window.innerWidth);
-          return 'xl';
+      opensData: opensData,
+      Breakpoint: {
+
+        /**
+         
+         */
+        up: (w) => {
+          const arg = parseInt(w ? w : window.innerWidth, 10);
+
+          for (const i in breakpoints) {
+            if (breakpoints[i].value > arg) {
+              return breakpoints[i].name;
+            }
+          }
+          return null;
         },
-        list: {
-          xs: 0,
-          sm: 576,
-          md: 768,
-          lg: 992,
-          xl: 1200
+        down: (w) => {
+          const
+            arg = parseInt(w ? w : window.innerWidth, 10),
+            reversed = Array.from(breakpoints).reverse();
+
+          for (const i in reversed) {
+            if (arg > reversed[i].value) {
+              return reversed[i].name;
+            }
+          }
+          return 'xs';
+        },
+        all: () => {
+          const obj = {};
+          breakpoints.map((o) => {
+            obj[o.name] = o.value;
+          });
+
+          return obj;
         }
-      }*/
+      }
     },
     String: {
       isURL: isURL,

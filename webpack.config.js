@@ -1,7 +1,8 @@
 
 const
     path = require('path'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    terser = require('terser-webpack-plugin');
 
 const config = {
   entry: './build.js',
@@ -13,8 +14,9 @@ const config = {
 //  mode: 'development',
   watch: true,
   plugins : [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
+    new terser({
+      extractComments: false,
+      test: /\.js(\?.*)?$/i
     })
   ],
   module: {
