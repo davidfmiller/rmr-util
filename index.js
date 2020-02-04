@@ -1369,7 +1369,7 @@
     }
   };
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && typeof document !== 'undefined' && objectHas(document, 'body')) {
 
     window.addEventListener('load', () => {
       document.body.classList.add('rmr-load');
