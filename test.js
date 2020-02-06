@@ -104,6 +104,11 @@ describe('rmr-util', function() {
     expect(RMR.String.isURL('https://www.google.com')).to.equal(true);
     expect(RMR.String.isURL('www.google.com')).to.equal(false);
 
+    expect(RMR.String.isEmail('john@doe.com')).to.equal(true);
+    expect(RMR.String.isURL('john@johncom')).to.equal(false);
+
+
+
   });
 
 
