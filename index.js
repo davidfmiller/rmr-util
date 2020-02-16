@@ -973,6 +973,21 @@
       return null;
     }
 
+    if (isAnElement(ancestor)) {
+      let parent = node;
+
+      if (! node.parentNode) {
+        return null;
+      }
+
+      while ( (parent = parent.parentNode) !== null) {
+        if (parent === ancestor) { 
+          return parent;
+        }
+      }
+      return null;
+    }
+
     if (includeSelf && selectorMatches(node, ancestor)) {
       return node;
     }
@@ -984,10 +999,6 @@
     }
 
     while ((parent = parent.parentNode) !== null) {
-
-//       if (! parent instanceof Element) {
-//         return null;
-//       }
 
       if (selectorMatches(parent, ancestor)) {
         return parent;
