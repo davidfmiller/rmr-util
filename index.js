@@ -771,6 +771,31 @@
   },
 
   /**
+   * Apply styles to a node
+   *
+   * @param {HTMLElement} node that should have styles applied
+   * @param {Object} styles key/value pairs for styles and values
+   * @return {Element} node
+   */
+  walkDOM = function(node, func) {
+
+    node = getElement(node);
+    if (! node) {
+      return false;
+    }
+
+    func(node);
+    node = node.firstChild;
+    while (node) {
+      walkDOM(node,func);
+      node = node.nextSibling;
+    }
+
+    return node;
+  },
+
+
+  /**
    * Apply attributes to a node
    *
    * @param {HTMLElement} node that should have styles applied
@@ -1377,7 +1402,9 @@
       setStyles: setStyles,
       setAttributes: setAttributes,
       scrollTo: scrollNodeTo,
-      relaivePosition: relativePosition
+      walk: walkDOM
+//      relativePosition: relativePosition
+
     }
   };
 
