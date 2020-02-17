@@ -1173,6 +1173,24 @@
             a.setAttribute('target', '_blank');
           }
         }
+      },
+      loader = function(options) {
+
+        const
+          imgs = options ? RMR.Node.getAll(options) : RMR.Node.getAll('img.rmr-loader'),
+          loader = (e) => {
+            const target = e.target || e.currentTarget;
+            target.classList.add('rmr-loaded');
+          };
+        imgs.map((img) => {
+          const src = img.getAttribute('data-rmr-src');
+          if (! src) {
+            console.error('No `data-rmr-src` attribute for image loader', img);
+            return;
+          }
+          img.addEventListener('load', loader, false);
+          img.src = src;
+        });
       }
     },
 

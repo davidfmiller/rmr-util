@@ -5,6 +5,14 @@
  */
 
 
+body.rmr-js img.rmr-loader {
+  opacity: 0;
+  transition: opacity 0.5s;
+  &.rmr-loaded {
+    opacity: 1;
+  }
+}
+
 /**
 
  */
