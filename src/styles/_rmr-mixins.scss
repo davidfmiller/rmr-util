@@ -5,7 +5,7 @@
  */
 
 
-body.rmr-js img.rmr-loader {
+body.rmr-js img[data-rmr-src] {
   opacity: 0;
   transition: opacity 0.5s;
   &.rmr-loaded {

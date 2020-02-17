@@ -1177,7 +1177,7 @@
       loader: function(options) {
 
         const
-          imgs = options ? getElements(options) : getElements('img.rmr-loader'),
+          imgs = options ? getElements(options) : getElements('img[data-rmr-src]'),
           loader = (e) => {
             const target = e.target || e.currentTarget;
             target.classList.add('rmr-loaded');
