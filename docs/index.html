@@ -103,6 +103,7 @@
       <button class="">Submit</button>
     </form>
 
+    <img data-rmr-src="https://im.vsco.co/aws-us-west-2/5d508d/2222331/5e478e7de6e0db2b1ea8fbbd/vsco5e478e87283a5.jpg?w=1184&dpr=2" class="rmr-loader">
 
     <form class="xhr" action="xhr/form.php" method="post">
       <input type="checkbox" name="check" value="rmr">
@@ -129,6 +130,8 @@
   <script src="build/rmr-util.bundle.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+RMR.Tools.loader();
 
       RMR.Node.get('.scroll-offset').addEventListener('click', function(e) {
         RMR.Browser.scrollTo(500, 200);

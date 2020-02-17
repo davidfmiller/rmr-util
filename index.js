@@ -1174,10 +1174,10 @@
           }
         }
       },
-      loader = function(options) {
+      loader: function(options) {
 
         const
-          imgs = options ? RMR.Node.getAll(options) : RMR.Node.getAll('img.rmr-loader'),
+          imgs = options ? getElements(options) : getElements('img.rmr-loader'),
           loader = (e) => {
             const target = e.target || e.currentTarget;
             target.classList.add('rmr-loaded');
