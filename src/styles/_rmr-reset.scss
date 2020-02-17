@@ -7,6 +7,13 @@ iframe { border: 0; display: block; margin: 0; padding: 0; }
 body { font-family: $rmr-fonts; } 
 legend { display: none; }
 
-svg#rmr-master {
-  display: none;
+svg {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  &#rmr-master {
+    display: none;
+  }
 }
