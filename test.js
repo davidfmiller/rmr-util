@@ -107,7 +107,7 @@ describe('rmr-util', function() {
     expect(RMR.String.isEmail('john@doe.com')).to.equal(true);
     expect(RMR.String.isURL('john@johncom')).to.equal(false);
 
-
+    expect(RMR.String.bind('abcde{$f}', { '{$f}' : 'f', 'a' : '1' })).to.equal('1bcdef');
 
   });
 

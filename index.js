@@ -711,6 +711,27 @@
 
 
   /**
+   * Bind variables to placeholders in a string
+   *
+   * @param {String} subject 
+   * @param {Object} lookup table containing key/value pairs
+   * @return {String} string
+   */
+  bindString = function(subject, lookup) {
+
+    let str = subject;
+
+    for (const key in lookup) {
+      if (! objectHas(lookup, key)) {
+        continue;
+      }
+      str = str.replace(key, lookup[key])
+    }
+
+    return str;
+  },
+
+  /**
    * Localize a string
    *
    * {
@@ -1357,7 +1378,8 @@
       isEmail: isEmail,
       isURL: isURL,
       guid: guid,
-      localize: localize
+      localize: localize,
+      bind: bindString,
     },
     Array: {
       coerce: arr,
