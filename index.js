@@ -1198,19 +1198,23 @@
       loader: function(options) {
 
         const
-          imgs = options ? getElements(options) : getElements('img[data-rmr-src]'),
+          imgs = options ? getElements(options) : getElements('img[data-rmr-src],img[data-rmr-srcset]'),
           loader = (e) => {
             const target = e.target || e.currentTarget;
             target.classList.add('rmr-loaded');
           };
         imgs.map((img) => {
-          const src = img.getAttribute('data-rmr-src');
-          if (! src) {
-            console.error('No `data-rmr-src` attribute for image loader', img);
+          const
+            src = img.getAttribute('data-rmr-src'),
+            srcset = img.getAttribute('data-rmr-srcset');
+          if (! src && ! srcset) {
+            console.error('No `data-rmr-src` or `data-rmr-srcset` attributes for image loader', img);
             return;
           }
+
           img.addEventListener('load', loader, false);
-          img.src = src;
+          if (srcset) { img.srcset = srcset; }
+          else { img.src = src; }
         });
       }
     },
