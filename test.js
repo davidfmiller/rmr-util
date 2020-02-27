@@ -97,6 +97,11 @@ describe('rmr-util', function() {
 
   it('RMR.String', function fromPath() {
 
+    expect(RMR.String.formatSeconds(23)).to.equal('23s');
+    expect(RMR.String.formatSeconds(87)).to.equal('1:27');
+    expect(RMR.String.formatSeconds(60)).to.equal('1:00');
+    expect(RMR.String.formatSeconds(3600)).to.equal('1:00:00');
+
     expect(RMR.String.isURL('http://readmeansrun.com')).to.equal(true);
     expect(RMR.String.isURL('https://readmeansrun.com')).to.equal(true);
     expect(RMR.String.isURL('www.readmeansrun.com')).to.equal(false);

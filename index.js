@@ -1384,6 +1384,28 @@
       guid: guid,
       localize: localize,
       bind: bindString,
+      formatSeconds: (seconds) => {
+
+        seconds = parseInt(seconds);
+        if (seconds < 60) {
+          return seconds + 's';
+        }
+
+        let
+        sec_num = seconds,
+        hours   = Math.floor(sec_num / 3600),
+        minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+        seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+        if (seconds < 10) { seconds = '0' + seconds;}
+
+        if (hours == 0) {
+          return minutes + ':' + seconds;
+        }
+        if (minutes < 10) { minutes = '0' + minutes;}
+
+        return hours + ':' + minutes + ':' + seconds;
+      }
     },
     Array: {
       coerce: arr,
