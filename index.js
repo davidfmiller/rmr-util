@@ -25,7 +25,12 @@
     {
       name: 'xl',
       value: 1200
+    },
+    {
+      name: 'xxl',
+      value: 2000
     }
+
   ],
   easeInOutQuad = function(t) { return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t };
 
@@ -1166,12 +1171,55 @@
   
   };
 
+  const breakpointUp = (w) => {
+          const arg = parseInt(w ? w : window.innerWidth, 10);
+
+          for (const i in breakpoints) {
+            if (breakpoints[i].value > arg) {
+              return breakpoints[i].name;
+            }
+          }
+          return null;
+        };
+        const breakpointDown = (w) => {
+          const
+            arg = parseInt(w ? w : window.innerWidth, 10),
+            reversed = Array.from(breakpoints).reverse();
+
+          for (const i in reversed) {
+            if (arg > reversed[i].value) {
+              return reversed[i].name;
+            }
+          }
+          return 'xs';
+        };
+        const breakpointAll = () => {
+          const obj = {};
+          breakpoints.map((o) => {
+            obj[o.name] = o.value;
+          });
+
+          return obj;
+        }
 
   module.exports = {
 
     Base64: Base64,
 
     Tools: {
+      debug: function() {
+
+        const
+          div = makeElement('div', { id: 'rmr-debug' });
+
+        document.body.appendChild(div);
+        const resizer = () => {
+          const w = parseInt(window.innerWidth, 10);
+          div.innerHTML = breakpointDown(w) + ':' + breakpointUp(w) + ', ' + w + 'px × ' + window.innerHeight + 'px';
+        };
+        window.addEventListener('resize', resizer);
+        resizer();
+      },
       externalLinks: function(root) {
         let parent = (root ? getElement(root) : document.body);
         if (! parent) {
@@ -1346,36 +1394,9 @@
         /**
          
          */
-        up: (w) => {
-          const arg = parseInt(w ? w : window.innerWidth, 10);
-
-          for (const i in breakpoints) {
-            if (breakpoints[i].value > arg) {
-              return breakpoints[i].name;
-            }
-          }
-          return null;
-        },
-        down: (w) => {
-          const
-            arg = parseInt(w ? w : window.innerWidth, 10),
-            reversed = Array.from(breakpoints).reverse();
-
-          for (const i in reversed) {
-            if (arg > reversed[i].value) {
-              return reversed[i].name;
-            }
-          }
-          return 'xs';
-        },
-        all: () => {
-          const obj = {};
-          breakpoints.map((o) => {
-            obj[o.name] = o.value;
-          });
-
-          return obj;
-        }
+         up: breakpointUp,
+         down: breakpointDown,
+         all: breakpointAll
       }
     },
     String: {

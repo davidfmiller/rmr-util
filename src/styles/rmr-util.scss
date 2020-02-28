@@ -6,7 +6,18 @@
 @import "_rmr-breakpoints";
 @import "_rmr-vars";
 
-
+div#rmr-debug {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: #FF0090;
+  color: #fff;
+  padding: 5px 10px;
+  border-top-left-radius: 5px;
+  font-size: 10px;
+  font-family: $rmr-fonts-mono;
+  z-index: 3;
+}
 
 
 /*
