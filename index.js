@@ -1207,7 +1207,7 @@
     Base64: Base64,
 
     Tools: {
-      debug: function() {
+      debug: function(options) {
 
         const
           div = makeElement('div', { id: 'rmr-debug' });
