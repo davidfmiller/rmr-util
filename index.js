@@ -1172,42 +1172,42 @@
   };
 
   const breakpointUp = (w) => {
-          const arg = parseInt(w ? w : window.innerWidth, 10);
+    const arg = parseInt(w ? w : window.innerWidth, 10);
 
-          for (const i in breakpoints) {
-            if (breakpoints[i].value > arg) {
-              return breakpoints[i].name;
-            }
-          }
-          return null;
-        };
-        const breakpointDown = (w) => {
-          const
-            arg = parseInt(w ? w : window.innerWidth, 10),
-            reversed = Array.from(breakpoints).reverse();
+    for (const i in breakpoints) {
+      if (breakpoints[i].value > arg) {
+        return breakpoints[i].name;
+      }
+    }
+    return null;
+  };
+  const breakpointDown = (w) => {
+    const
+      arg = parseInt(w ? w : window.innerWidth, 10),
+      reversed = Array.from(breakpoints).reverse();
 
-          for (const i in reversed) {
-            if (arg > reversed[i].value) {
-              return reversed[i].name;
-            }
-          }
-          return 'xs';
-        };
-        const breakpointAll = () => {
-          const obj = {};
-          breakpoints.map((o) => {
-            obj[o.name] = o.value;
-          });
+    for (const i in reversed) {
+      if (arg > reversed[i].value) {
+        return reversed[i].name;
+      }
+    }
+    return 'xs';
+  };
+  const breakpointAll = () => {
+    const obj = {};
+    breakpoints.map((o) => {
+      obj[o.name] = o.value;
+    });
 
-          return obj;
-        }
+    return obj;
+  };
 
   module.exports = {
 
     Base64: Base64,
 
     Tools: {
-      debug: function(options) {
+      debug: function(/*options*/) {
 
         const
           div = makeElement('div', { id: 'rmr-debug' });
