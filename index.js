@@ -1183,7 +1183,7 @@
 
     for (const i in breakpoints) {
       if (breakpoints[i].value > arg) {
-        return breakpoints[i].name;
+        return breakpoints[i];
       }
     }
     return null;
@@ -1201,10 +1201,10 @@
 
     for (const i in reversed) {
       if (arg > reversed[i].value) {
-        return reversed[i].name;
+        return reversed[i];
       }
     }
-    return 'xs';
+    return breakpoints[0];
   };
 
 
