@@ -1233,8 +1233,12 @@
 
         document.body.appendChild(div);
         const resizer = () => {
-          const w = parseInt(window.innerWidth, 10);
-          div.innerHTML = breakpointDown(w) + ':' + breakpointUp(w) + ', ' + w + 'px × ' + window.innerHeight + 'px';
+          const
+            w = parseInt(window.innerWidth, 10),
+            down = breakpointDown(w),
+            up = breakpointUp(w);
+
+          div.innerHTML = '<span title="' + down.value + 'px">' + down.name + '</span>:<span title="' + up.value + 'px">' + up.name + '</span>, ' + w + 'px × ' + window.innerHeight + 'px';
         };
         window.addEventListener('resize', resizer);
         resizer();
