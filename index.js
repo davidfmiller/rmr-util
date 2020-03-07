@@ -1207,6 +1207,20 @@
     return breakpoints[0];
   };
 
+  /**
+  
+   @return {Object} - { names : widths }
+   */
+  const breakpointGet = (name) => {
+
+    let ret = null;
+    breakpoints.forEach((o) => {
+      if (o.name === name) { ret = o; }
+    });
+
+    return ret;
+  };
+
 
   /**
   
@@ -1419,6 +1433,7 @@
          */
          up: breakpointUp,
          down: breakpointDown,
+         get: breakpointGet,
          all: breakpointAll
       }
     },
