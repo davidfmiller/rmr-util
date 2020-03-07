@@ -1167,10 +1167,17 @@
     return null;
   };
 
+  // for notifications
   const subs = {
   
   };
 
+  /**
+   
+   
+   @param w {Int} - 
+   @return {String} - 
+   */
   const breakpointUp = (w) => {
     const arg = parseInt(w ? w : window.innerWidth, 10);
 
@@ -1181,6 +1188,12 @@
     }
     return null;
   };
+
+  /**
+
+   @param w {Int} - 
+   @return {String} - 
+   */
   const breakpointDown = (w) => {
     const
       arg = parseInt(w ? w : window.innerWidth, 10),
@@ -1193,6 +1206,12 @@
     }
     return 'xs';
   };
+
+
+  /**
+  
+   @return {Object} - { names : widths }
+   */
   const breakpointAll = () => {
     const obj = {};
     breakpoints.map((o) => {
