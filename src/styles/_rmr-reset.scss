@@ -6,6 +6,11 @@ iframe { border: 0; display: block; margin: 0; padding: 0; }
 body { font-family: $rmr-fonts; } 
 legend { display: none; }
 
+script {
+  display: none !important;
+}
+
+
 * {
   box-sizing: border-box;
 }
