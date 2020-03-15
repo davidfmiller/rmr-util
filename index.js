@@ -154,7 +154,8 @@
    * Retrieve an element via query selector, or
    *
    * @param {Mixed} arg the element to retrieve, or null if no such element exists
-   * @return {Element} element corresponding to the selector (or null if none exists)
+   * @param {Mixed, optional} the root node from which the query selector should select;
+   * @return {Element} element corresponding to the selector, or `null` if no such element exists
    */
   getElement = function(arg, parent) {
     if (typeof arg === 'string') {
@@ -214,11 +215,13 @@
    */
   formatLatitude = function(lat) {
 
-    let value = parseFloat(lat);
+    let
+    value = parseFloat(lat),
+    degrees = 0,
+    minutes = 0,
+    seconds = 0;
 
     const dir = value <  0 ? 'S' : 'N';
-
-    let degrees = 0, minutes = 0, seconds = 0;
 
     degrees = parseInt(value);
     value = (value - degrees) * 60;
@@ -241,11 +244,13 @@
    */
   formatLongitude = function(lon) {
 
-    let value = parseFloat(lon);
+    let
+    value = parseFloat(lon),
+    degrees = 0,
+    minutes = 0,
+    seconds = 0;
 
     const dir = value <  0 ? 'W' : 'E';
-
-    let degrees = 0, minutes = 0, seconds = 0;
 
     degrees = parseInt(value);
     value = (value - degrees) * 60;
@@ -364,8 +369,6 @@
    */
   scrollTo = function(y, duration) {
 
-    const
-    timing = easeInOutQuad;
     if (arguments.length === 1) {
       duration = 200;
     }
@@ -375,6 +378,7 @@
     }
 
     const
+    timing = easeInOutQuad,
     startingY = window.pageYOffset,
     diff = y - startingY;
 
@@ -411,10 +415,11 @@
       duration = 200;
     }
 
-    let start = element.scrollTop,
-        change = to - start,
-        startTime = performance.now(),
-        now, elapsed, t;
+    let
+    start = element.scrollTop,
+    change = to - start,
+    startTime = performance.now(),
+    now, elapsed, t;
 
     function animateScroll() {
       now = performance.now();
@@ -442,9 +447,10 @@
 
     node = getElement(node);
 
-    const pPos = node.parentNode.getBoundingClientRect(), // parent pos
-        cPos = node.getBoundingClientRect(), // target pos
-        pos = {};
+    const
+    pPos = node.parentNode.getBoundingClientRect(), // parent pos
+    cPos = node.getBoundingClientRect(), // target pos
+    pos = {};
 
     pos.top = cPos.top - pPos.top + node.parentNode.scrollTop,
     pos.right = cPos.right - pPos.right,
