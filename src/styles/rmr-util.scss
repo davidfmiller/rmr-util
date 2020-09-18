@@ -20,9 +20,10 @@
 
   &.rmr-embed {
     &:before {
-      padding-bottom: 0;
+      padding: 0;
       width: 0;
       height: 0;
+      display: none;
     }
 
     &[data-rmr-aspect="16-9"] {
