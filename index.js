@@ -1058,6 +1058,60 @@
     return true;
   },
 
+  validateForm = function(form) {
+    form = getElement(form);
+    if (! form) {
+      return false;
+    }
+
+    const inputs = form.querySelectorAll('*[required]');
+    let input, success, value;
+    for (const i in inputs) {
+      if (! RMR.Object.has(inputs, i)) {
+        continue;
+      }
+
+      success = true;
+      input = inputs[i];
+      value = input.value;
+      console.log(input);
+
+      switch (input.nodeName.toLowerCase()) {
+
+        case 'textarea':
+          success = input.value.trim() != '';
+          break;
+
+        case 'select':
+          console.log('select!', input);
+          const r = RMR.Array.coerce(input.selectedOptions);
+          if (r.length == 0) { return input; }
+          console.log(r[0], r[0].value);
+          if (r[0].value == '') {
+            success = false;
+          }
+          break;
+
+        default: // input
+          switch (input.type) {
+            case 'email':
+              success = RMR.String.isEmail(input.value);
+              break;
+            default: // text
+              success = input.value.trim() != '';
+          }
+      }
+
+      if (! success) {
+        return input;
+      }
+
+    }
+
+    return true;
+    
+  },
+
   /**
    * Make an XHR request
    *
@@ -1424,6 +1478,9 @@
         const agent = window.navigator.userAgent;
         return agent.match('iPhone;') || agent.match('iPad;') || agent.match('iPod;')  || agent.match('Mac OS X');
       }
+    },
+    Form: {
+      validate: validateForm,
     },
     Browser: {
       isTouch: isTouch,
