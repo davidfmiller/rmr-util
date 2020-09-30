@@ -1074,7 +1074,6 @@
       success = true;
       input = inputs[i];
       value = input.value;
-      console.log(input);
 
       switch (input.nodeName.toLowerCase()) {
 
