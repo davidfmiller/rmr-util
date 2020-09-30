@@ -6,6 +6,11 @@
 @import "_rmr-breakpoints";
 @import "_rmr-vars";
 
+div.grecaptcha-badge {
+  display: none !important;
+}
+
+
 .rmr-aspect {
   display: block;
   width: 100%;
