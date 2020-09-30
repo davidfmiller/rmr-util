@@ -1067,7 +1067,7 @@
     const inputs = form.querySelectorAll('*[required]');
     let input, success, value;
     for (const i in inputs) {
-      if (! RMR.Object.has(inputs, i)) {
+      if (! objectHas(inputs, i)) {
         continue;
       }
 
@@ -1083,10 +1083,8 @@
           break;
 
         case 'select':
-          console.log('select!', input);
           const r = RMR.Array.coerce(input.selectedOptions);
           if (r.length == 0) { return input; }
-          console.log(r[0], r[0].value);
           if (r[0].value == '') {
             success = false;
           }
@@ -1095,7 +1093,7 @@
         default: // input
           switch (input.type) {
             case 'email':
-              success = RMR.String.isEmail(input.value);
+              success = isEmail(input.value);
               break;
             default: // text
               success = input.value.trim() != '';
