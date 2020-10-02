@@ -1082,7 +1082,7 @@
           break;
 
         case 'select':
-          const r = RMR.Array.coerce(input.selectedOptions);
+          const r = arr(input.selectedOptions);
           if (r.length == 0) { return input; }
           if (r[0].value == '') {
             success = false;
