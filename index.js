@@ -1327,7 +1327,7 @@
 
         for (let i = 0; i < links.length; i++) {
           const a = links[i];
-          if (a.protocol === 'mailto:' || a.hasAttribute('data-rmr-download')) {
+          if (a.protocol === 'mailto:' || a.hasAttribute('data-rmr-download') || a.hasAttribute('name')) {
             continue;
           }
 //          console.log(a.host, location.host)
