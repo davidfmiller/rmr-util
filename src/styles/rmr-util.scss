@@ -35,7 +35,8 @@ div.grecaptcha-badge {
       padding-bottom: 56.25%;
     }
 
-    iframe {
+    > img,
+    > iframe {
       position: absolute;
       width: 100%;
       height: 100%;
