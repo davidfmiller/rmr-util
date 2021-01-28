@@ -35,7 +35,6 @@ div.grecaptcha-badge {
       padding-bottom: 56.25%;
     }
 
-    > img,
     > iframe {
       position: absolute;
       width: 100%;
@@ -43,7 +42,9 @@ div.grecaptcha-badge {
     }
   }
 
-
+  > img {
+    position: absolute;
+  }
 }
 
 div#rmr-debug {
