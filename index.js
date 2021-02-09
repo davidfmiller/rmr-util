@@ -1314,11 +1314,15 @@
         window.addEventListener('resize', resizer);
         resizer();
       },
-      externalLinks: function(root) {
-        let parent = (root ? getElement(root) : document.body);
+      externalLinks: function(obj) {
+        let parent = (obj && obj.root ? getElement(obj.root) : document.body);
         if (! parent) {
           console.error('Node doesn\'t exist RMR.Tools.externalLinks', root);
           return;
+        }
+
+        if (!obj.hasOwnProperty('exclude')) {
+          obj.exclude = [];
         }
 
         const
@@ -1330,10 +1334,12 @@
           if (a.protocol === 'mailto:' || a.hasAttribute('data-rmr-download') || a.hasAttribute('name')) {
             continue;
           }
-//          console.log(a.host, location.host)
-          if (a.host !== location.host) {
+          console.log(a.host, location.host)
+          if (a.host !== location.host && obj.exclude.indexOf(a.host) < 0) {
             a.classList.add('rmr-external');
             a.setAttribute('target', '_blank');
+          } else {
+            console.log('exclude', a.host);
           }
         }
       },
