@@ -1334,13 +1334,10 @@
           if (a.protocol === 'mailto:' || a.hasAttribute('data-rmr-download') || a.hasAttribute('name')) {
             continue;
           }
-          console.log(a.host, location.host)
           if (a.host !== location.host && obj.exclude.indexOf(a.host) < 0) {
             a.classList.add('rmr-external');
             a.setAttribute('target', '_blank');
-          } else {
-            console.log('exclude', a.host);
-          }
+          } 
         }
       },
       loader: function(options) {
