@@ -1315,9 +1315,9 @@
         resizer();
       },
       externalLinks: function(obj) {
-        let parent = (obj && obj.root ? getElement(obj.root) : document.body);
+        const parent = (obj && obj.hasOwnProperty('root') ? getElement(obj.root) : document.body);
         if (! parent) {
-          console.error('Node doesn\'t exist RMR.Tools.externalLinks', root);
+          console.error('Node doesn\'t exist RMR.Tools.externalLinks', parent);
           return;
         }
 
