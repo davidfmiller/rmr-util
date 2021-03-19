@@ -19,8 +19,8 @@ div.grecaptcha-badge {
 
   &:before {
     content: "";
-    display: inline-block;
-    width: 1px;
+    display: block;
+    width: 0;
     height: 0;
     padding-bottom: 100%;
   }
@@ -31,6 +31,10 @@ div.grecaptcha-badge {
       width: 0;
       height: 0;
       display: none;
+    }
+
+    &[data-rmr-aspect="1-1"] {
+      padding-bottom: 100%;
     }
 
     &[data-rmr-aspect="16-9"] {
