@@ -25,24 +25,25 @@ div.grecaptcha-badge {
     padding-bottom: 100%;
   }
 
+  &[data-rmr-aspect="16-9"] {
+    &:before {
+      padding-bottom: 56.25%;
+    }
+  }
+
+  &[data-rmr-aspect="3-2"] {
+    &:before {
+      padding-bottom: 66.666%;
+    }
+  }
+
+
   &.rmr-embed {
     &:before {
       padding: 0;
       width: 0;
       height: 0;
       display: none;
-    }
-
-    &[data-rmr-aspect="1-1"] {
-      padding-bottom: 100%;
-    }
-
-    &[data-rmr-aspect="16-9"] {
-      padding-bottom: 56.25%;
-    }
-
-    &[data-rmr-aspect="3-2"] {
-      padding-bottom: 66.666%;
     }
 
     > iframe {
@@ -53,6 +54,7 @@ div.grecaptcha-badge {
   }
 
   > img {
+    top: 0;
     position: absolute;
   }
 }
