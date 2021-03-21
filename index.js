@@ -1309,7 +1309,7 @@
             down = breakpointDown(w),
             up = breakpointUp(w);
 
-          div.innerHTML = '<span data-popover="' + down.value + 'px" title="' + down.value + 'px">' + down.name + '</span>:<span data-popover="' + up.value + 'px" title="' + up.value + 'px">' + up.name + '</span>, ' + w + 'px × ' + window.innerHeight + 'px';
+          div.innerHTML = '<span data-popover="' + down.value + 'px" title="' + down.value + 'px">' + down.name + '</span>' + (up ? ':<span data-popover="' + up.value + 'px" title="' + up.value + 'px">' + up.name + '</span>' : '') + ', ' + w + 'px × ' + window.innerHeight + 'px';
         };
         window.addEventListener('resize', resizer);
         resizer();
