@@ -37,6 +37,11 @@ div.grecaptcha-badge {
     }
   }
 
+  &[data-rmr-aspect="2-1"] {
+    &:before {
+      padding-bottom: 50%;
+    }
+  }
 
   &.rmr-embed {
     &:before {
