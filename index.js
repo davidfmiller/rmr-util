@@ -1292,6 +1292,38 @@
     return obj;
   };
 
+  const notifyPost = function(name, obj) {
+
+    const special = '*';
+
+    if (objectHas(subs, special)) {
+      for (const i in subs[special]) {
+        if (! objectHas(subs[special], i)) {
+          continue;
+        }
+        subs[special][i](obj);
+      }
+    }
+
+    if (! objectHas(subs, name)) {
+      return;
+    }
+
+    for (const i in subs[name]) {
+      if (! objectHas(subs[name], i)) {
+        continue;
+      }
+      subs[name][i](obj);
+    }
+  };
+
+  const notifySubscribe = (name, f) => {
+    if (! objectHas(subs, name)) {
+      subs[name] = [];
+    }
+    subs[name].push(f);
+  };
+
   module.exports = {
 
     Base64: Base64,
@@ -1343,11 +1375,13 @@
       loader: function(options) {
 
         const
-          imgs = options ? getElements(options) : getElements('img[data-rmr-src],img[data-rmr-srcset]'),
+          imgs = options && objectHas(options, 'selector') ? getElements(options.selector) : getElements('img[data-rmr-src],img[data-rmr-srcset]'),
           loader = (e) => {
             const target = e.target || e.currentTarget;
             target.classList.add('rmr-loaded');
+            notifyPost('rmr-load', target);
           };
+
         imgs.map((img) => {
           const
             src = img.getAttribute('data-rmr-src'),
@@ -1537,36 +1571,8 @@
       reorder: arrayReorder
     },
     Notify: {
-      post: (name, obj) => {
-
-        const special = '*';
-
-        if (objectHas(subs, special)) {
-          for (const i in subs[special]) {
-            if (! objectHas(subs[special], i)) {
-              continue;
-            }
-            subs[special][i](obj);
-          }
-        }
-
-        if (! objectHas(subs, name)) {
-          return;
-        }
-
-        for (const i in subs[name]) {
-          if (! objectHas(subs[name], i)) {
-            continue;
-          }
-          subs[name][i](obj);
-        }
-      },
-      subscribe: (name, f) => {
-        if (! objectHas(subs, name)) {
-          subs[name] = [];
-        }
-        subs[name].push(f);
-      }
+      post: notifyPost,
+      subscribe: notifySubscribe 
     },
     Object: {
       keys: objectKeys,

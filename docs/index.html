@@ -148,7 +148,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-      RMR.Tools.loader();
+      RMR.Tools.loader({ selector: 'img[data-rmr-srcset]', on: (target) => { console.log('!!!!!!!!!', target); }  });
       RMR.Tools.debug();
 
       RMR.Node.get('.scroll-offset').addEventListener('click', function(e) {
@@ -173,6 +173,7 @@
         RMR.Node.scrollTo(div, 'p');
       });
 
+      RMR.Notify.subscribe('rmr-load', function(arg) { console.log('SUBSCRIBE', arguments) });
 
       window.Man({pre : true});
 
