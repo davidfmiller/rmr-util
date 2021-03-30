@@ -49,20 +49,13 @@ div.grecaptcha-badge {
     }
   }
 
-  &.rmr-embed {
-    &:before {
-      padding: 0;
-      width: 0;
-      height: 0;
-      display: none;
-    }
-
-    > iframe {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
+  > iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
   }
+
 
   > img {
     top: 0;
