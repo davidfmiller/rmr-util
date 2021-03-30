@@ -25,6 +25,12 @@ div.grecaptcha-badge {
     padding-bottom: 100%;
   }
 
+  &[data-rmr-aspect="2-3"] {
+    &:before {
+      padding-bottom: 150%;
+    }
+  }
+
   &[data-rmr-aspect="16-9"] {
     &:before {
       padding-bottom: 56.25%;
