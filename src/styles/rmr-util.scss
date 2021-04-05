@@ -49,7 +49,10 @@ div.grecaptcha-badge {
     }
   }
 
-  & > * {
+  & > div,
+  & > img,
+  & > a,
+  & > iframe {
     position: absolute;
     top: 0;
     width: 100%;
