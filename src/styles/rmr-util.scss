@@ -52,6 +52,7 @@ div.grecaptcha-badge {
   & > div,
   & > img,
   & > a,
+  & > a > img,
   & > iframe {
     position: absolute;
     top: 0;
