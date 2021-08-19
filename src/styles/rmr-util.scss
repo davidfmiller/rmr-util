@@ -52,10 +52,11 @@ div.grecaptcha-badge {
   & > div,
   & > img,
   & > a,
-  & > svg,
-  & > a > svg,
+  & > canvas,
+  & > a > canvas,
   & > a > img,
   & > iframe {
+    display: block;
     position: absolute;
     top: 0;
     width: 100%;
