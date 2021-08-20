@@ -10,7 +10,6 @@ script {
   display: none !important;
 }
 
-
 * {
   box-sizing: border-box;
 }
@@ -34,4 +33,10 @@ svg {
 abbr[title] {
   cursor: help;
   text-decoration: none;
+}
+
+canvas {
+  padding: 0;
+  margin: 0;
+  display: block;
 }
