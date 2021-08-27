@@ -167,7 +167,7 @@
       }
 
       return root.querySelector(arg);
-    } else if (arg instanceof HTMLElement) {
+    } else if (arg instanceof Element) {
       return arg;
     }
 
