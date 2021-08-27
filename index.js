@@ -181,7 +181,7 @@
    * @return {Bool}
    */
   isAnElement = function(arg) {
-    return arg instanceof HTMLElement;
+    return arg instanceof Element;
   },
 
   /**
