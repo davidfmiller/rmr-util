@@ -43,6 +43,13 @@ div.grecaptcha-badge {
     }
   }
 
+  &[data-rmr-aspect="4-3"] {
+    &:before {
+      padding-bottom: 75%;
+    }
+  }
+
+
   &[data-rmr-aspect="2-1"] {
     &:before {
       padding-bottom: 50%;
