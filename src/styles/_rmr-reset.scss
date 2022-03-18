@@ -41,3 +41,10 @@ canvas {
   margin: 0;
   display: block;
 }
+
+button, select {
+  cursor: pointer;
+  &[disabled] {
+    cursor: default;
+  }
+}
