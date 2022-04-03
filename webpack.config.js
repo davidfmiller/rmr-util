@@ -1,38 +1,22 @@
+/* globals require, __dirname, module, webpack */
 
 const
-    path = require('path'),
-    webpack = require('webpack'),
-    terser = require('terser-webpack-plugin');
+  path = require('path');
+  webpack = require('webpack');
 
 const config = {
   entry: './build.js',
+//  mode: 'development',
+  mode: 'production',
   output: {
-    path: path.resolve(__dirname, 'docs/build/'),
+    path: path.resolve(__dirname, 'docs/build'),
     filename: 'rmr-util.bundle.js'
   },
-  mode: 'production',
-//  mode: 'development',
-  watch: true,
-  plugins : [
-    new terser({
-      extractComments: false,
-      test: /\.js(\?.*)?$/i
-    })
+  plugins: [
   ],
+  watch: true,
   module: {
     rules: [
-      {
-        test: /\.js$/,
-//        include: path.resolve(__dirname, 'src'),
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['es2015']
-            ]
-          }
-        }]
-      }
     ]
   }
 };

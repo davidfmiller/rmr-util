@@ -438,7 +438,7 @@
 
     animateScroll();
   },
-  
+
   /**
    *
    *
@@ -681,66 +681,66 @@
      return n;
   },
 
-  /**
-   * Make loader
-   *
-   * @return {String} SVG element
-   */
-  loader = function() {
+//   *
+//    * Make loader
+//    *
+//    * @return {String} SVG element
+//    */
+//   loader = function() {
+//
+//
+//     const svg = makeElement('svg', {
+//       version: '1.1',
+//       class: 'rmr-loader',
+//       xmlns: 'http://www.w3.org/2000/svg',
+//       'xmlns:xlink': 'http://www.w3.org/1999/xlink',
+//       x: '0px',
+//       y: '0px',
+//       width: '40px',
+//       height: '40px',
+//       viewBox: '0 0 40 40',
+//       'enable-background': 'new 0 0 40 40',
+//       'xml:space': 'preserve'
+//     });
+//
+//     svg.innerHTML =
+//     '<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>' +
+//     '<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z">' +
+//     '<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.8s" repeatCount="indefinite"></animateTransform>' +
+//     '</path>';
+// */
+//
+//     return '<svg version="1.1" class="rmr-loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">' +
+//     '<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>' +
+//     '<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z">' +
+//     '<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.8s" repeatCount="indefinite"></animateTransform>' +
+//     '</path>' +
+//     '</svg>';
+//
+// //    return svg;
+//   },
 
-/*
-    const svg = makeElement('svg', {
-      version: '1.1',
-      class: 'rmr-loader',
-      xmlns: 'http://www.w3.org/2000/svg',
-      'xmlns:xlink': 'http://www.w3.org/1999/xlink',
-      x: '0px',
-      y: '0px',
-      width: '40px',
-      height: '40px',
-      viewBox: '0 0 40 40',
-      'enable-background': 'new 0 0 40 40',
-      'xml:space': 'preserve'
-    });
 
-    svg.innerHTML =
-    '<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>' +
-    '<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z">' +
-    '<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.8s" repeatCount="indefinite"></animateTransform>' +
-    '</path>';
-*/
-
-    return '<svg version="1.1" class="rmr-loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">' +
-    '<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>' +
-    '<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z">' +
-    '<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.8s" repeatCount="indefinite"></animateTransform>' +
-    '</path>' +
-    '</svg>';
-
-//    return svg;
-  },
-
-
-  /**
-   * Bind variables to placeholders in a string
-   *
-   * @param {String} subject 
-   * @param {Object} lookup table containing key/value pairs
-   * @return {String} string
-   */
-  bindString = function(subject, lookup) {
-
-    let str = subject;
-
-    for (const key in lookup) {
-      if (! objectHas(lookup, key)) {
-        continue;
-      }
-      str = str.replace(key, lookup[key])
-    }
-
-    return str;
-  },
+//   *
+//    * Bind variables to placeholders in a string
+//    *
+//    * @param {String} subject
+//    * @param {Object} lookup table containing key/value pairs
+//    * @return {String} string
+//    */
+//   bindString = function(subject, lookup) {
+//
+//     let str = subject;
+//
+//     for (const key in lookup) {
+//       if (! objectHas(lookup, key)) {
+//         continue;
+//       }
+//       str = str.replace(key, lookup[key])
+//     }
+//
+//     return str;
+//   },
 
   /**
    * Localize a string
@@ -1013,7 +1013,7 @@
       }
 
       while ( (parent = parent.parentNode) !== null) {
-        if (parent === ancestor) { 
+        if (parent === ancestor) {
           return parent;
         }
       }
@@ -1106,7 +1106,7 @@
     }
 
     return true;
-    
+
   },
 
   /**
@@ -1226,14 +1226,14 @@
 
   // for notifications
   const subs = {
-  
+
   };
 
   /**
-   
-   
-   @param w {Int} - 
-   @return {String} - 
+
+
+   @param w {Int} -
+   @return {String} -
    */
   const breakpointUp = (w) => {
     const arg = parseInt(w ? w : window.innerWidth, 10);
@@ -1248,8 +1248,8 @@
 
   /**
 
-   @param w {Int} - 
-   @return {String} - 
+   @param w {Int} -
+   @return {String} -
    */
   const breakpointDown = (w) => {
     const
@@ -1265,7 +1265,7 @@
   };
 
   /**
-  
+
    @return {Object} - { names : widths }
    */
   const breakpointGet = (name) => {
@@ -1280,7 +1280,7 @@
 
 
   /**
-  
+
    @return {Object} - { names : widths }
    */
   const breakpointAll = () => {
@@ -1369,7 +1369,7 @@
           if (a.host !== location.host && obj.exclude.indexOf(a.host) < 0) {
             a.classList.add('rmr-external');
             a.setAttribute('target', '_blank');
-          } 
+          }
         }
       },
       loader: function(options) {
@@ -1526,7 +1526,7 @@
       Breakpoint: {
 
         /**
-         
+
          */
          up: breakpointUp,
          down: breakpointDown,
@@ -1539,7 +1539,7 @@
       isURL: isURL,
       guid: guid,
       localize: localize,
-      bind: bindString,
+//      bind: bindString,
       formatSeconds: (seconds) => {
 
         seconds = parseInt(seconds);
@@ -1572,7 +1572,7 @@
     },
     Notify: {
       post: notifyPost,
-      subscribe: notifySubscribe 
+      subscribe: notifySubscribe
     },
     Object: {
       keys: objectKeys,
@@ -1597,7 +1597,7 @@
       ancestor: ancestor,
       matches: selectorMatches,
       remove: removeNode,
-      loader: loader,
+//      loader: loader,
       get: getElement,
       getAll: getElements,
       prune: pruneElement,

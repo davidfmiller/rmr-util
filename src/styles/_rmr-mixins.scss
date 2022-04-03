@@ -5,7 +5,8 @@
  */
 
 
-body.rmr-js img[data-rmr-src] {
+body.rmr-js img[data-rmr-src],
+body.rmr-js img[data-rmr-srcset] {
   opacity: 0;
   transition: opacity 0.5s;
   &.rmr-loaded {
