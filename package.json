@@ -1,6 +1,6 @@
 {
   "name": "rmr-util",
-  "version": "1.1.129",
+  "version": "1.1.130",
   "description": "JS & CSS for your browser",
   "url": "https://davidfmiller.github.io/rmr-util/",
   "license": "ISC",
@@ -9,7 +9,7 @@
   },
   "author": {
     "name": "davidfmiller",
-    "url": "https://readmeansrun.com"
+    "url": "https://dfmllc.ca"
   },
   "repository": {
     "type": "git",
