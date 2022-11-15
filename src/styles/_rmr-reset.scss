@@ -14,10 +14,21 @@ script {
 * {
   box-sizing: border-box;
 }
-
 strong {
   font-weight: bold;
+  em {
+    font-style: italic;
+    font-weight: bold;
+  }
 }
+
+em {
+  font-style: italic;
+  strong {
+    font-weight: bold;
+  }
+}
+
 
 svg {
   pointer-events: none;
