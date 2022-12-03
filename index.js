@@ -1363,7 +1363,7 @@
 
         for (let i = 0; i < links.length; i++) {
           const a = links[i];
-          if (a.protocol === 'tel:' || a.protocol === 'mailto:' || a.hasAttribute('data-rmr-download') || a.hasAttribute('name')) {
+          if (a.protocol === 'file:' || a.protocol === 'tel:' || a.protocol === 'mailto:' || a.hasAttribute('data-rmr-download') || a.hasAttribute('name')) {
             continue;
           }
           if (a.host !== location.host && obj.exclude.indexOf(a.host) < 0) {
