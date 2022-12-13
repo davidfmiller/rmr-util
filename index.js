@@ -1574,7 +1574,7 @@
       ancestor: ancestor,
       matches: selectorMatches,
       remove: removeNode,
-//      loader: loader,
+      loader: loader,
       get: getElement,
       getAll: getElements,
       prune: pruneElement,
