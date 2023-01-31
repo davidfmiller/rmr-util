@@ -56,6 +56,20 @@ div.grecaptcha-badge {
     }
   }
 
+  &[data-rmr-aspect="32-9"] {
+    &:before {
+      padding-bottom: 28.125%;
+    }
+  }
+
+
+  &[data-rmr-aspect="7-3"] {
+    &:before {
+      padding-bottom: 42.8571428571%;
+    }
+  }
+
+
   & > svg,
   & > div,
   & > img,
