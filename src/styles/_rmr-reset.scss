@@ -56,9 +56,13 @@ canvas {
   display: block;
 }
 
-button, select {
-  cursor: pointer;
-  &[disabled] {
-    cursor: default;
+*[disabled] {
+    cursor: not-allowed;
+}
+
+button,
+select {
+  &:not([disabled]) {
+    cursor: pointer;
   }
 }
