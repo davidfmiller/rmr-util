@@ -915,16 +915,11 @@
       return {};
     }
 
-    if (typeof FormData !== 'undefined') {
-//      const f = new FormData(form);
-//      console.log(f);
-//      return f;
-    }
 
     const
     inputs = form.querySelectorAll('select,input,textarea'),
     params = {};
-
+// 
     for (const i in inputs) {
       if (! objectHas(inputs, i)) {
         continue;
@@ -933,7 +928,7 @@
         name = inputs[i].getAttribute('name'),
         type = inputs[i].type ? inputs[i].type : 'text';
 
-      if (inputs[i].hasAttribute('disabled')) {
+      if (inputs[i].hasAttribute('disabled') || !name) {
         continue;
       }
 
@@ -941,6 +936,15 @@
         if (inputs[i].checked) {
           params[name] = inputs[i].value;
         }
+      } else if ((type === 'select' || type === 'select-multiple') && inputs[i].hasAttribute('multiple')) {
+
+        let arr = [];
+        const opts = inputs[i].querySelectorAll('option:checked');
+        opts.forEach((o) => {
+          arr.push(o.value);
+        });
+        params[name] = arr;
+
       } else {
         params[name] = inputs[i].value;
       }
