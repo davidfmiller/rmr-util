@@ -1596,6 +1596,10 @@
 
   if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
+    if (!document.body) {
+      return;
+    }
+
     window.addEventListener('load', () => {
       document.body.classList.add('rmr-load');
     });
