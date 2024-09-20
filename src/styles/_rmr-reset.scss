@@ -47,6 +47,10 @@ abbr[title] {
   text-decoration: none;
 }
 
+a abbr[title] {
+  cursor: pointer;
+}
+
 picture,
 video,
 img,
