@@ -919,7 +919,7 @@
     const
     inputs = form.querySelectorAll('select,input,textarea'),
     params = {};
-// 
+//
     for (const i in inputs) {
       if (! objectHas(inputs, i)) {
         continue;
@@ -1310,6 +1310,23 @@
     Base64: Base64,
 
     Tools: {
+
+      tableOfContents: function() {
+        const links = Array.from(document.querySelectorAll('a[href^="#"]'));
+        links.forEach(l => {
+          l.addEventListener('click', e => {
+            const a = ancestor(e.target, 'a', true);
+            if (! a) { return; }
+
+            const target = document.querySelector(a.getAttribute('href'));
+            if (! target) { return; }
+
+            scrollTo(target, 250);
+            e.preventDefault();
+          });
+        });
+      },
+
       debug: function(/*options*/) {
 
         const
